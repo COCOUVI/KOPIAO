@@ -15,7 +15,7 @@ return new class extends Migration
             // Colonnes pour les tuteurs
             $table->text('bio')->nullable();
             $table->string('qualifications')->nullable();
-            $table->json('subjects')->nullable(); // maths, langues, informatique, etc.
+            $table->text('subjects')->nullable();
             $table->decimal('rate_per_hour', 10, 2)->nullable(); // tarif en FCFA/heure
             $table->json('availability')->nullable(); // calendrier dispo
             $table->string('city')->nullable(); // Cotonou, Porto-Novo

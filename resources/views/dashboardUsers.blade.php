@@ -538,43 +538,21 @@
                     <i class="fas fa-wallet"></i>
                     <span class="menu-text">Paiements</span>
                 </div>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="btn-logout">
-                        <i class="fas fa-sign-out-alt"></i>
-                        Déconnecter
-                    </button>
-                </form>
 
-                <style>
-                    .btn-logout {
-                        background-color: #e74c3c;
-                        /* rouge vif */
-                        color: white;
-                        border: none;
-                        padding: 10px 20px;
-                        font-size: 16px;
-                        font-weight: bold;
-                        border-radius: 8px;
-                        cursor: pointer;
-                        display: flex;
-                        align-items: center;
-                        gap: 8px;
-                        /* espace entre icône et texte */
-                        transition: background-color 0.3s, transform 0.2s;
-                    }
+               <div class="menu-item logout-item" style="width: 100%;">
+    <form method="POST" action="{{ route('logout') }}" style="width: 100%;">
+        @csrf
+        <button type="submit"
+            style="display: flex; align-items: center; gap: 10px; color: #fff; background: #e02c18;
+                   padding: 13px 10px; border: none; border-radius: 6px; text-decoration: none;
+                   font-weight: 500; margin-top: 5px; transition: background 0.3s; width: 100%; cursor: pointer;">
+            <i class="fas fa-sign-out-alt"></i>
+            <span style="font-size: 16px;" >Déconnexion</span>
+        </button>
+    </form>
+</div>
 
-                    .btn-logout:hover {
-                        background-color: #c0392b;
-                        /* rouge plus foncé au survol */
-                        transform: scale(1.05);
-                        /* léger zoom */
-                    }
 
-                    .btn-logout i {
-                        font-size: 18px;
-                    }
-                </style>
 
             </div>
         </div>
@@ -606,7 +584,12 @@
                         <div class="progress-bar"
                             style="background: #e0e0e0; border-radius: 5px; height: 20px; width: 100%;">
                             <div class="progress-bar-fill"
-                                style="background: #4caf50; width: {{ $profileCompletion }}%; height: 100%; border-radius: 5px;">
+                                style="
+                        background: {{ $profileCompletion < 100 ? '#f44336' : '#4caf50' }};
+                        width: {{ $profileCompletion }}%;
+                        height: 100%;
+                        border-radius: 5px;
+                    ">
                             </div>
                         </div>
                     </div>
@@ -616,7 +599,6 @@
                     <i class="fas fa-pencil-alt"></i>
                     Compléter mon profil
                 </a>
-
             </div>
 
 

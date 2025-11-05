@@ -633,16 +633,17 @@
     <!-- Navigation Sidebar -->
     <div class="sidebar">
         <div class="sidebar-header">
-         <a href="{{ route('dashboardUser') }}" style="text-decoration: none;">
-    <div class="platform-logo" style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
-        <div class="logo-icon" style="background-color: #3948c9; color: white; padding: 10px; border-radius: 6px; font-weight: bold;">
-            EB
-        </div>
-        <div class="platform-name" style="font-size: 1.2em; font-weight: bold; color: #333;">
-            EduBenin
-        </div>
-    </div>
-</a>
+            <a href="{{ route('dashboardUser') }}" style="text-decoration: none;">
+                <div class="platform-logo" style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                    <div class="logo-icon"
+                        style="background-color: #3948c9; color: white; padding: 10px; border-radius: 6px; font-weight: bold;">
+                        EB
+                    </div>
+                    <div class="platform-name" style="font-size: 1.2em; font-weight: bold; color: #333;">
+                        EduBenin
+                    </div>
+                </div>
+            </a>
 
             <div class="platform-tagline">Votre plateforme éducative au Bénin</div>
 
@@ -677,16 +678,14 @@
                 style="margin: 20px 0; padding: 15px; border-radius: 8px; text-align: center; font-family: Arial, sans-serif;">
                 @if ($profileCompletion < 100)
                     <div
-                        style="background-color: #f8d7da; color: #721c24; padding: 12px 20px; border-radius: 8px; margin-bottom: 10px;">
-                        Profil invalide : complétez toutes vos informations !
+                        style="background-color: #dd1525; color: #ffffff; padding: 12px 20px; border-radius: 8px; margin-bottom: 10px;">
+                        Profil invalide !
                     </div>
-
                 @else
                     <div
-                        style="background-color: #d4edda; color: #155724; padding: 12px 20px; border-radius: 8px; margin-bottom: 10px;">
+                        style="background-color: #149131; color: #ffffff; padding: 12px 20px; border-radius: 8px; margin-bottom: 10px;">
                         Profil complet !
                     </div>
-
                 @endif
             </div>
 
@@ -702,7 +701,7 @@
                 <i class="fas fa-user-edit"></i>
                 <span class="menu-text">Mon profil</span>
             </a>
-            
+
             <a href="#" class="menu-item">
                 <i class="fas fa-question-circle"></i>
                 <span class="menu-text">Aide & Support</span>
@@ -719,6 +718,61 @@
             </div>
 
             <!-- Profile Completion Banner -->
+            <style>
+                .profile-banner {
+                    background: #fff;
+                    padding: 20px;
+                    border-radius: 10px;
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+
+                .profile-banner-content {
+                    display: flex;
+                    align-items: center;
+                }
+
+                .profile-banner-icon {
+                    font-size: 40px;
+                    color: #4caf50;
+                    margin-right: 15px;
+                }
+
+                .profile-banner-text h3 {
+                    margin: 0;
+                    font-size: 18px;
+                    font-weight: bold;
+                }
+
+                .profile-banner-text p {
+                    margin: 5px 0 10px;
+                    color: #666;
+                }
+
+                .progress-bar {
+                    background: #e0e0e0;
+                    border-radius: 5px;
+                    height: 20px;
+                    width: 100%;
+                    overflow: hidden;
+                }
+
+                .progress-bar-fill {
+                    height: 100%;
+                    border-radius: 5px;
+                    transition: width 0.3s ease, background 0.3s ease;
+                }
+
+                .progress-text {
+                    margin-top: 5px;
+                    font-size: 14px;
+                    font-weight: 500;
+                    text-align: right;
+                }
+            </style>
+
             <div class="profile-banner">
                 <div class="profile-banner-content">
                     <div class="profile-banner-icon">
@@ -728,10 +782,16 @@
                         <h3>Complétez votre profil</h3>
                         <p>Votre profil est complété à {{ $profileCompletion }}%. Ajoutez plus d'informations pour
                             améliorer votre visibilité.</p>
+
                         <div class="progress-bar">
-                            <div class="progress-bar-fill" style="width: {{ $profileCompletion }}%;"></div>
+                            <div class="progress-bar-fill"
+                                style="width: {{ $profileCompletion }}%; background: {{ $profileCompletion < 100 ? '#f44336' : '#4caf50' }};">
+                            </div>
                         </div>
-                        <div class="progress-text">{{ $profileCompletion }}% complété</div>
+                        <div class="progress-text"
+                            style="color: {{ $profileCompletion < 100 ? '#f44336' : '#4caf50' }};">
+                            {{ $profileCompletion }}% complété
+                        </div>
                     </div>
                 </div>
             </div>
@@ -877,6 +937,143 @@
                                 <span class="error">{{ $message }}</span>
                             @enderror
                         </div>
+
+                        <style>
+                            /* 🌟 STYLE DES DISPONIBILITÉS 🌟 */
+                            .availability-grid {
+                                display: grid;
+                                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                                gap: 15px;
+                                margin-top: 10px;
+                            }
+
+                            .availability-day {
+                                border: 2px solid #1E63C4;
+                                border-radius: 10px;
+                                padding: 15px;
+                                background-color: #f9fbff;
+                                transition: all 0.3s ease;
+                                box-shadow: 0 2px 6px rgba(30, 99, 196, 0.1);
+                                opacity: 0;
+                                transform: translateY(15px);
+                                animation: fadeInUp 0.4s forwards;
+                            }
+
+                            .availability-day:hover {
+                                background-color: #eaf1ff;
+                                transform: translateY(-3px);
+                                box-shadow: 0 4px 12px rgba(30, 99, 196, 0.2);
+                            }
+
+                            .availability-day label {
+                                color: #1E63C4;
+                                font-weight: 600;
+                                font-size: 15px;
+                            }
+
+                            .availability-day input[type="checkbox"] {
+                                accent-color: #1E63C4;
+                                margin-right: 6px;
+                            }
+
+                            .availability-day input[type="time"] {
+                                border: 1px solid #ccc;
+                                border-radius: 6px;
+                                padding: 5px;
+                                font-size: 14px;
+                                margin: 0 5px;
+                                transition: border 0.2s ease;
+                            }
+
+                            .availability-day input[type="time"]:focus {
+                                border-color: #1E63C4;
+                                outline: none;
+                                box-shadow: 0 0 5px rgba(30, 99, 196, 0.3);
+                            }
+
+                            @keyframes fadeInUp {
+                                0% {
+                                    opacity: 0;
+                                    transform: translateY(15px);
+                                }
+
+                                100% {
+                                    opacity: 1;
+                                    transform: translateY(0);
+                                }
+                            }
+                        </style>
+
+                        <div class="form-group">
+                            <label for="availability">Disponibilités *</label>
+                            <p class="text-muted">Cochez les jours et indiquez vos heures disponibles.</p>
+
+                            <div class="availability-grid">
+                                @php
+                                    $days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+                                    $availability = json_decode($user->availability, true) ?? [];
+                                @endphp
+
+                                @foreach ($days as $index => $day)
+                                    <div class="availability-day" style="animation-delay: {{ $index * 0.1 }}s;">
+                                        <label>
+                                            <input type="checkbox" name="availability[{{ $day }}][enabled]"
+                                                {{ isset($availability[$day]) ? 'checked' : '' }}>
+                                            {{ $day }}
+                                        </label>
+
+                                        <div style="margin-top: 8px;">
+                                            <label>De :</label>
+                                            <input type="time" name="availability[{{ $day }}][start]"
+                                                value="{{ $availability[$day]['start'] ?? '' }}">
+                                            <label>à :</label>
+                                            <input type="time" name="availability[{{ $day }}][end]"
+                                                value="{{ $availability[$day]['end'] ?? '' }}">
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+
+                            @error('availability')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const availabilityDays = document.querySelectorAll('.availability-day');
+
+                                availabilityDays.forEach(day => {
+                                    const checkbox = day.querySelector('input[type="checkbox"]');
+                                    const startInput = day.querySelector('input[name*="[start]"]');
+                                    const endInput = day.querySelector('input[name*="[end]"]');
+
+                                    // Vérifie à l'envoi du formulaire
+                                    day.closest('form').addEventListener('submit', function(e) {
+                                        if (checkbox.checked) {
+                                            if (!startInput.value || !endInput.value) {
+                                                e.preventDefault();
+                                                alert(
+                                                    `Veuillez remplir les heures de début et de fin pour ${checkbox.parentElement.textContent.trim()}.`);
+                                                startInput.focus();
+                                            }
+                                        }
+                                    });
+
+                                    // Met à jour le required dynamiquement
+                                    checkbox.addEventListener('change', function() {
+                                        if (checkbox.checked) {
+                                            startInput.setAttribute('required', 'required');
+                                            endInput.setAttribute('required', 'required');
+                                        } else {
+                                            startInput.removeAttribute('required');
+                                            endInput.removeAttribute('required');
+                                        }
+                                    });
+                                });
+                            });
+                        </script>
+
                     </div>
                 @endif
 
