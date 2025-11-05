@@ -165,7 +165,7 @@
                 <h3>Rejoignez EduBenin Tutorat dès aujourd’hui</h3>
                 <p>Inscrivez-vous gratuitement et commencez à apprendre ou à enseigner selon vos disponibilités.</p>
                 <div class="cta-buttons">
-                    <a href="register.html" class="btn btn-primary">S’inscrire</a>
+                    <a href="{{route('register')}}" class="btn btn-primary">S’inscrire</a>
                     <a href="{{ route('login') }}" class="btn btn-outline">Se Connecter</a>
                 </div>
             </div>
