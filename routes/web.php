@@ -11,7 +11,6 @@ Route::get('/', function () {
 
 
 
-
 Route::middleware('auth')->group(function () {
 
     //Le dashboard des utilisteurs

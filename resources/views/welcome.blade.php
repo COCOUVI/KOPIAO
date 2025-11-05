@@ -13,15 +13,6 @@
 
 
 
-<form method="POST" action="{{ route('logout') }}">
-    @csrf
-    <button type="submit" class="btn btn-danger">
-        <i class="fas fa-sign-out-alt"></i> Déconnecter
-    </button>
-</form>
-
-
-
                     <p class="hero-subtitle">Apprendre. Enseigner. Réussir au Bénin.</p>
                     <p class="hero-description">
                         EduBenin Tutorat est une plateforme béninoise qui connecte les apprenants et les tuteurs qualifiés
@@ -177,7 +168,7 @@
                 <h3>Rejoignez EduBenin Tutorat dès aujourd’hui</h3>
                 <p>Inscrivez-vous gratuitement et commencez à apprendre ou à enseigner selon vos disponibilités.</p>
                 <div class="cta-buttons">
-                    <a href="register.html" class="btn btn-primary">S’inscrire</a>
+                    <a href="{{ route('register') }}" class="btn btn-primary">S’inscrire</a>
                     <a href="{{ route('login') }}" class="btn btn-outline">Se Connecter</a>
                 </div>
             </div>

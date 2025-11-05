@@ -54,7 +54,7 @@
 
 <body class="index-page">
 
-  <header id="header" class="header d-flex align-items-center fixed-top shadow-sm"
+  <header id="header" class="header d-flex align-items-center fixed-top shadow-sm mb-8"
     style="background: rgba(13, 110, 253, 0.95); backdrop-filter: blur(8px);">
     <div
         class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
@@ -215,6 +215,14 @@
 
     <!-- Main JS File -->
     <script src="{{ asset('js/welcome.js') }}"></script>
+  <style>
+
+      /* Dans welcome.css ou dans une section <style> */
+      body .main {
+          padding-top: 120px; /* correspond à la hauteur du header */
+      }
+
+  </style>
 
 </body>
 

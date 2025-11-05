@@ -19,14 +19,12 @@ return new class extends Migration
                 ->unique();
             $table->timestamps();
         });
-
         //automatisation de l'insertion des roles
         DB::table('roles')->insert([
             ['name' => 'admin'],
             ['name' => 'etudiant'],
             ['name' => 'tuteur'],
         ]);
-
     }
 
     /**
