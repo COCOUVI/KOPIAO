@@ -10,6 +10,18 @@
                 <!-- Texte principal -->
                 <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
                     <h1 class="hero-title">EduBenin Tutorat</h1>
+
+
+
+<form method="POST" action="{{ route('logout') }}">
+    @csrf
+    <button type="submit" class="btn btn-danger">
+        <i class="fas fa-sign-out-alt"></i> Déconnecter
+    </button>
+</form>
+
+
+
                     <p class="hero-subtitle">Apprendre. Enseigner. Réussir au Bénin.</p>
                     <p class="hero-description">
                         EduBenin Tutorat est une plateforme béninoise qui connecte les apprenants et les tuteurs qualifiés
