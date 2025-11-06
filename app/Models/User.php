@@ -2,8 +2,7 @@
 
 namespace App\Models;
 
-use App\Notifications\VerifyEmailEduTutorat;
-use Illuminate\Auth\Notifications\VerifyEmail;
+use App\LearningPreference;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -20,7 +19,8 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'firstname',
+        'lastname',
         'email',
         'password',
         'firstname',
@@ -28,8 +28,18 @@ class User extends Authenticatable implements MustVerifyEmail
         'telephone',
         'photo_path',
         'birthdate',
-        'role_id'
-
+        'remember_token',
+        'bio',
+        'qualifications',
+        'subjects',
+        'rate_per_hour',
+        'availability',
+        'city',
+        'learning_history',
+        'learning_preference',
+        'satisfaction_score',
+        'notify_email',
+        'notify_push',
     ];
 
     /**
@@ -54,9 +64,5 @@ class User extends Authenticatable implements MustVerifyEmail
             'password' => 'hashed',
         ];
     }
-
-    public function sendEmailVerificationNotification()
-    {
-        $this->notify(new VerifyEmailEduTutorat());
-    }
+    protected $casts = ['learning_preference'=>LearningPreference::class ];
 }

@@ -8,6 +8,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
 
+
     <!-- Favicons -->
     <link href="{{ asset('images/image_1.webp') }}" rel="icon">
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -43,6 +44,8 @@
   <!-- Main CSS File -->
   <link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
 
+
+
     <!-- =======================================================
   * Template Name: Eventix
   * Template URL: https://bootstrapmade.com/eventix-bootstrap-events-website-template/
@@ -50,6 +53,8 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+    @livewireStyles
+    @stack('styles')
 </head>
 
 <body class="index-page">
@@ -71,7 +76,7 @@
                 <li><a href="index.html" class="active text-dark">Accueil</a></li>
                 <li><a href="#about" class="text-dark">À propos</a></li>
                 <li><a href="#services" class="text-dark">Nos Services</a></li>
-                <li><a href="#professeurs" class="text-dark">Professeurs</a></li>
+                <li><a href="{{route('listProfesseur')}}" class="text-dark">Professeurs</a></li>
                 <li><a href="#temoignages" class="text-dark">Témoignages</a></li>
                 <li><a href="#contact" class="text-dark">Contact</a></li>
 
@@ -236,5 +241,5 @@
   </style>
 
 </body>
-
+@livewireScripts
 </html>
