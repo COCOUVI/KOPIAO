@@ -239,7 +239,7 @@
       }
 
   </style>
-
+@livewireStyles
 </body>
-@livewireScripts
+
 </html>

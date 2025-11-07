@@ -127,7 +127,7 @@
                                                  alt="{{ $tuteur->firstname }}"
                                                  class="rounded-circle">
                                         @else
-                                            <img src="{{ asset('images/default-avatar.png') }}"
+                                            <img src="{{ asset('images/profill_default.webp') }}"
                                                  alt="Avatar"
                                                  class="rounded-circle">
                                         @endif

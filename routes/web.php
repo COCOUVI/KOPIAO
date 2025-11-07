@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
     //Les routes pour completer les profils
      Route::get('/profile/edit', [CompleterProfilUser::class, 'edit'])->name('CompleterProfilUser.edit');
     Route::post('/profile/update', [CompleterProfilUser::class, 'update'])->name('CompleterProfilUser.update');
+    Route::get('/profil/show', [CompleterProfilUser::class, 'show'])->name('CompleterProfilUser.show');
 
     //Route pour afficher la liste des professeurs
      //Route::get('/list_professeur',[TeacherController::class, 'listProfesseur'])->name('listProfesseur');

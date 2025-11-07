@@ -2,10 +2,9 @@
 
 namespace App;
 
-enum LearningPreference:String
+enum LearningPreference: string
 {
-    //
-    case  ONLINE ='online';
-    case  IN_PROGRESS ='in_progress';
-
+    case IN_PERSON = 'in_person';
+    case ONLINE = 'online';
+    case HYBRID = 'hybrid';
 }
