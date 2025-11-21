@@ -73,7 +73,7 @@
         <!-- Navigation -->
         <nav id="navmenu" class="navmenu">
             <ul class="d-flex align-items-center">
-                <li><a href="index.html" class="active text-dark">Accueil</a></li>
+                <li><a href="{{url('/')}}" class="active text-dark">Accueil</a></li>
                 <li><a href="#about" class="text-dark">À propos</a></li>
                 <li><a href="#services" class="text-dark">Nos Services</a></li>
                 <li><a href="{{route('listProfesseur')}}" class="text-dark">Professeurs</a></li>
