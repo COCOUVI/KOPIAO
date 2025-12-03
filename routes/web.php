@@ -94,6 +94,10 @@ Route::get('/villes-populaires', function() {
 
 Route::get('/professeurs', [ProfesseurController::class, 'index'])->name('professeurs.index');
 
+Route::get('/admin/index', function () {
+    return view('AdminDashboard');
+});
+
 Route::middleware('auth')->group(function () {
 
     //Le dashboard des utilisteurs
