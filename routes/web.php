@@ -94,6 +94,8 @@ Route::get('/villes-populaires', function() {
 
 Route::get('/professeurs', [ProfesseurController::class, 'index'])->name('professeurs.index');
 
+//Route administrateurs
+
 Route::get('/admin/index', function () {
     return view('AdminDashboard');
 });
