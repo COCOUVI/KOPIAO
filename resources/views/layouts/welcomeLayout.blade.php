@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title> EduBenin</title>
+    <title> EduConnect</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
 
@@ -66,11 +66,11 @@
 
 <header id="header" class="header d-flex align-items-center fixed-top" style="background-color: blue;">
     <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between"
-         style=" margin-bottom: 35px;">
+        style=" margin-bottom: 35px;">
 
         <a href="{{ url('/') }}" class="logo d-flex align-items-center text-white text-decoration-none">
 
-            <h1 class="sitename fw-bold mb-0">EduBenin Tutorat</h1>
+            <h1 class="sitename fw-bold mb-0">EduConnect</h1>
         </a>
 
         <nav id="navmenu" class="navmenu">
@@ -100,7 +100,7 @@
             </form>
         @else
             <a class="btn-getstarted btn btn-warning fw-semibold text-light px-4 py-2 rounded-pill"
-               href="{{ route('login') }}">
+                href="{{ route('login') }}">
                 Se connecter
             </a>
         @endauth
@@ -129,7 +129,7 @@
 
 
 <footer id="footer" class="footer position-relative text-white"
-        style="background: linear-gradient(135deg, #0d6efd, #004aad); padding-top: 60px;">
+    style="background: linear-gradient(135deg, #0d6efd, #004aad); padding-top: 60px;">
 
     <div class="container footer-top pb-5 border-bottom border-light">
         <div class="row gy-4">
@@ -138,7 +138,7 @@
             <div class="col-lg-4 col-md-6 footer-about">
                 <a href="index.html" class="logo d-flex align-items-center mb-3 text-white text-decoration-none">
                     <i class="bi bi-mortarboard-fill fs-3 me-2 text-warning"></i>
-                    <span class="sitename fw-bold fs-4">EduBenin Tutorat</span>
+                    <span class="sitename fw-bold fs-4">EduConnect</span>
                 </a>
                 <div class="footer-contact pt-2">
                     <p>Campus Universitaire d’Abomey-Calavi</p>
@@ -183,14 +183,10 @@
                 <p class="text-white-50">Abonnez-vous pour recevoir nos dernières actualités et offres spéciales.
                 </p>
                 <div class="d-flex mt-3">
-                    <input type="email" id="emailInput"
-                           class="form-control me-2 border-0 rounded-start"
-                           placeholder="Votre e-mail"
-                           style="background-color: #f8fbff;"
-                           required>
+                    <input type="email" id="emailInput" class="form-control me-2 border-0 rounded-start"
+                        placeholder="Votre e-mail" style="background-color: #f8fbff;" required>
 
-                    <button onclick="sendMail()"
-                            class="btn btn-warning text-dark fw-semibold px-3 rounded-end">
+                    <button onclick="sendMail()" class="btn btn-warning text-dark fw-semibold px-3 rounded-end">
                         S’abonner
                     </button>
                 </div>
