@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="hero-actions" data-aos="fade-up" data-aos-delay="450">
-                        <a href="{{ route('listProfesseur') }}" class="btn btn-primary btn-lg me-3">Trouver un Tuteur</a>
+                        <a href="" class="btn btn-primary btn-lg me-3">Trouver un Tuteur</a>
                         <a href="{{ route('register') }}" class="btn btn-outline-primary btn-lg">Devenir Tuteur</a>
                     </div>
 
@@ -160,7 +160,7 @@
             <div class="row g-3 align-items-end">
                 <!-- Matière -->
                 <div class="col-md-4">
-                    <label class="form-label fw-semibold" style="color:#0d6efd;">Matière</label>
+                    <label class="form-label fw-semibold" style="color:#0d6efd;">Cours</label>
                     <input type="text" name="subject" class="form-control form-control-lg border-primary-subtle"
                         placeholder="Ex : Mathématiques, Anglais..." id="subjectInput" value="{{ old('subject', request('subject')) }}">
                 </div>
@@ -195,7 +195,7 @@
         <!-- Matières populaires défilantes -->
         <div class="mt-5">
             <h5 class="text-center mb-4 fw-semibold" style="color:#0d6efd;">
-                <i class="bi bi-lightning-charge-fill me-2"></i>Matières populaires
+                <i class="bi bi-lightning-charge-fill me-2"></i>Cours populaires
             </h5>
             <div class="matieres-container position-relative overflow-hidden">
                 <div class="navigation-buttons left">
@@ -674,10 +674,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             </div>
                         </div>
                         <div class="tutor-info">
-                            <div class="tutor-rating">
-                                <i class="bi bi-star-fill"></i>
-                                <span>{{ number_format($tutor->satisfaction_score ?? 4.5, 1) }}</span>
-                            </div>
+
                             <h4 class="tutor-name">{{ $tutor->firstname }} {{ $tutor->lastname }}</h4>
 
                             @php
@@ -736,10 +733,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 </div>
                             </div>
                             <div class="tutor-info">
-                                <div class="tutor-rating">
-                                    <i class="bi bi-star-fill"></i>
-                                    <span>{{ number_format($tutor->satisfaction_score ?? 4.5, 1) }}</span>
-                                </div>
+
                                 <h4 class="tutor-name">{{ $tutor->firstname }} {{ $tutor->lastname }}</h4>
 
                                 @php
@@ -805,14 +799,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="tutor-modal-info">
                             <div class="tutor-modal-header">
                                 <h3>{{ $tutor->firstname }} {{ $tutor->lastname }}</h3>
-                                <div class="tutor-modal-rating">
-                                    <div class="stars">
-                                        @for($i = 1; $i <= 5; $i++)
-                                            <i class="bi bi-star-fill {{ $i <= ($tutor->satisfaction_score ?? 0) ? 'active' : '' }}"></i>
-                                        @endfor
-                                    </div>
-                                    <span class="rating-text">{{ number_format($tutor->satisfaction_score ?? 4.5, 1) }}</span>
-                                </div>
+
                             </div>
 
                             <div class="tutor-modal-details">
@@ -1596,103 +1583,242 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     <!-- Contact Section -->
-    <section id="contact" class="contact section">
+    <section id="inscription" class="inscription-section">
 
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-            <div class="row align-items-center">
+        <div class="row align-items-center position-relative">
 
-                <!-- Image à gauche -->
-                <div class="col-lg-6 mb-4 mb-lg-0" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="contact-image text-center">
-                        <img src="{{ asset('images/image_3.webp') }}" class="img-fluid rounded-3 shadow"
-                            alt="Contact EduBenin Tutorat">
-                    </div>
+            <!-- Image en arrière-plan avec effet flou -->
+            <div class="col-lg-12 position-absolute start-0 top-0 w-100 h-100 d-none d-lg-block"
+                 style="z-index: 1;">
+                <div class="background-image-wrapper rounded-4 overflow-hidden">
+                    <img src="{{ asset('images/image_3.webp') }}"
+                         class="img-fluid w-100 h-100 object-fit-cover"
+                         alt="Devenir tuteur EduBenin"
+                        >
                 </div>
+            </div>
 
-                <!-- Formulaire à droite (version lumineuse bleue) -->
-                <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
-                    <div class="contact-form p-4 p-lg-5 rounded-4"
-                        style="background: linear-gradient(135deg, #e3f2fd, #ffffff);
-               box-shadow: 0 8px 24px rgba(0, 123, 255, 0.15);
-               border: 1px solid rgba(0, 123, 255, 0.2);">
+            <!-- Formulaire d'inscription à droite avec transparence -->
+            <div class="col-lg-6 offset-lg-6" data-aos="fade-left" data-aos-delay="300"
+                 style="z-index: 2; position: relative;">
+                 <br><br><br>
+                <div class="inscription-form p-4 p-lg-5 rounded-4"
+                     style="background: linear-gradient(135deg, rgba(227, 242, 253, 0.7), rgba(255, 255, 255, 0.8));
+                            box-shadow: 0 8px 24px rgba(0, 123, 255, 0.15);
+                            border: 1px solid rgba(0, 123, 255, 0.2);
+                            backdrop-filter: blur(5px);">
 
-                        <div class="section-title mb-4 text-primary">
-                            <h2 class="fw-bold" style="color: #0f0f0f;">Contactez-nous</h2>
-                            <p style="color: #0d47a1;">Une question, une suggestion ou un partenariat ?
-                                L’équipe <strong>EduBenin Tutorat</strong> est à votre écoute.</p>
-                        </div>
+                    <div class="section-title mb-4 text-primary">
+                        <h2 class="fw-bold" style="color: #0f0f0f;">Devenir un tuteur</h2>
+                        <p style="color: #0d47a1;">Rejoignez notre équipe de tuteurs passionnés et partagez votre savoir avec les étudiants de <strong>EduBenin Tutorat</strong>.</p>
+                    </div>
 
-                        <form id="contactForm" onsubmit="sendEmail(event)">
-                            <div class="row gy-3">
+                    <form id="inscriptionForm">
+                        <div class="row gy-3">
 
-                                <div class="col-md-6">
-                                    <label for="name" class="form-label text-dark fw-semibold">Nom complet</label>
-                                    <input type="text" name="name" id="name"
-                                        class="form-control border-0 shadow-sm" style="background-color: #f8fbff;"
-                                        placeholder="Votre nom" required>
-                                </div>
+                            <div class="col-md-6">
+                                <label for="nom" class="form-label text-dark fw-semibold">Nom</label>
+                                <input type="text" name="nom" id="nom"
+                                       class="form-control border-0 shadow-sm" style="background-color: rgba(248, 251, 255, 0.8);"
+                                       placeholder="Votre nom" required>
+                            </div>
 
-                                <div class="col-md-6">
-                                    <label for="email" class="form-label text-dark fw-semibold">Adresse e-mail</label>
-                                    <input type="email" name="email" id="email"
-                                        class="form-control border-0 shadow-sm" style="background-color: #f8fbff;"
-                                        placeholder="votremail@example.com" required>
-                                </div>
+                            <div class="col-md-6">
+                                <label for="prenom" class="form-label text-dark fw-semibold">Prénom</label>
+                                <input type="text" name="prenom" id="prenom"
+                                       class="form-control border-0 shadow-sm" style="background-color: rgba(248, 251, 255, 0.8);"
+                                       placeholder="Votre prénom" required>
+                            </div>
 
-                                <div class="col-12">
-                                    <label for="subject" class="form-label text-dark fw-semibold">Sujet</label>
-                                    <input type="text" name="subject" id="subject"
-                                        class="form-control border-0 shadow-sm" style="background-color: #f8fbff;"
-                                        placeholder="Objet de votre message" required>
-                                </div>
+                            <div class="col-12">
+                                <label for="email" class="form-label text-dark fw-semibold">Adresse e-mail</label>
+                                <input type="email" name="email" id="email"
+                                       class="form-control border-0 shadow-sm" style="background-color: rgba(248, 251, 255, 0.8);"
+                                       placeholder="votremail@example.com" required>
+                            </div>
 
-                                <div class="col-12">
-                                    <label for="message" class="form-label text-dark fw-semibold">Message</label>
-                                    <textarea name="message" id="message" rows="5" class="form-control border-0 shadow-sm"
-                                        style="background-color: #f8fbff;" placeholder="Écrivez votre message ici..." required></textarea>
-                                </div>
-
-                                <div class="col-12 text-end">
-                                    <button type="submit" class="btn btn-primary mt-3 px-4 py-2"
-                                        style="background: linear-gradient(135deg, #2196f3, #0d6efd);
-               border: none;
-               box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
-               transition: 0.3s;">
-                                        <i class="bi bi-send me-2"></i>Envoyer le message
+                            <div class="col-md-6">
+                                <label for="password" class="form-label text-dark fw-semibold">Mot de passe</label>
+                                <div class="input-group">
+                                    <input type="password" name="password" id="password"
+                                           class="form-control border-0 shadow-sm" style="background-color: rgba(248, 251, 255, 0.8);"
+                                           placeholder="Créez un mot de passe" required>
+                                    <button type="button" class="btn btn-outline-secondary border-0" onclick="togglePassword('password')">
+                                        <i class="bi bi-eye"></i>
                                     </button>
                                 </div>
-
                             </div>
-                        </form>
 
-                        <script>
-                            function sendEmail(event) {
-                                event.preventDefault(); // empêche le rechargement de la page
+                            <div class="col-md-6">
+                                <label for="confirmPassword" class="form-label text-dark fw-semibold">Confirmer le mot de passe</label>
+                                <div class="input-group">
+                                    <input type="password" name="confirmPassword" id="confirmPassword"
+                                           class="form-control border-0 shadow-sm" style="background-color: rgba(248, 251, 255, 0.8);"
+                                           placeholder="Confirmez votre mot de passe" required>
+                                    <button type="button" class="btn btn-outline-secondary border-0" onclick="togglePassword('confirmPassword')">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
 
-                                const name = encodeURIComponent(document.getElementById('name').value);
-                                const email = encodeURIComponent(document.getElementById('email').value);
-                                const subject = encodeURIComponent(document.getElementById('subject').value);
-                                const message = encodeURIComponent(document.getElementById('message').value);
+                            <div class="col-12 mt-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="conditions" required>
+                                    <label class="form-check-label text-dark" for="conditions">
+                                        J'accepte les <a href="#" style="color: #0d6efd; text-decoration: none;">conditions d'utilisation</a> et la <a href="#" style="color: #0d6efd; text-decoration: none;">politique de confidentialité</a>
+                                    </label>
+                                </div>
+                            </div>
 
-                                // Remplace l’adresse ci-dessous par ton adresse email de réception
-                                const recipient = "tonemail@example.com";
+                            <div class="col-12 text-end">
+                                <button type="submit" class="btn btn-primary mt-3 px-4 py-2"
+                                        style="background: linear-gradient(135deg, #2196f3, #0d6efd);
+                                               border: none;
+                                               box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+                                               transition: 0.3s;">
+                                    <i class="bi bi-person-plus me-2"></i>S'inscrire comme tuteur
+                                </button>
+                            </div>
 
-                                const mailtoLink =
-                                    `mailto:${recipient}?subject=${subject}&body=Nom: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${message}`;
+                            <div class="col-12 text-center mt-3">
+                                <p class="text-muted small">Vous avez déjà un compte ? <a href="#" style="color: #0d6efd; text-decoration: none;">Connectez-vous</a></p>
+                            </div>
 
-                                window.location.href = mailtoLink;
+                        </div>
+
+                    </form>
+
+                    <script>
+                        function togglePassword(inputId) {
+                            const input = document.getElementById(inputId);
+                            const button = input.nextElementSibling.querySelector('i');
+
+                            if (input.type === 'password') {
+                                input.type = 'text';
+                                button.classList.remove('bi-eye');
+                                button.classList.add('bi-eye-slash');
+                            } else {
+                                input.type = 'password';
+                                button.classList.remove('bi-eye-slash');
+                                button.classList.add('bi-eye');
                             }
-                        </script>
+                        }
 
+                        function validateForm(event) {
+                            event.preventDefault();
 
-                    </div>
+                            const password = document.getElementById('password').value;
+                            const confirmPassword = document.getElementById('confirmPassword').value;
+
+                            if (password !== confirmPassword) {
+                                alert('Les mots de passe ne correspondent pas.');
+                                return false;
+                            }
+
+                            if (password.length < 8) {
+                                alert('Le mot de passe doit contenir au moins 8 caractères.');
+                                return false;
+                            }
+
+                            // Ici, vous pouvez ajouter l'envoi des données à votre backend
+                            alert('Formulaire soumis avec succès!');
+                            // document.getElementById('inscriptionForm').submit();
+                        }
+
+                        // Attacher la fonction de validation au formulaire
+                        document.getElementById('inscriptionForm').addEventListener('submit', validateForm);
+                    </script>
+
                 </div>
-
-
+                <br><br><br>
             </div>
 
         </div>
 
-    </section><!-- /Contact Section -->
+
+    </div>
+
+</section>
+
+
+<style>
+.inscription-section {
+    position: relative;
+    padding: 5rem 0;
+    overflow: hidden;
+    background: #f8fafc;
+}
+
+.background-image-wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.object-fit-cover {
+    object-fit: cover;
+}
+
+/* Effets de transparence et flou */
+.inscription-form {
+    transition: all 0.3s ease;
+}
+
+.inscription-form:hover {
+    backdrop-filter: blur(8px);
+    box-shadow: 0 12px 32px rgba(0, 123, 255, 0.2) !important;
+}
+
+/* Styles pour les inputs */
+.form-control {
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.2) !important;
+}
+
+/* Responsive design */
+@media (max-width: 991.98px) {
+    .inscription-section {
+        padding: 3rem 0;
+    }
+
+    /* Sur mobile, le formulaire prend toute la largeur */
+    .col-lg-6.offset-lg-6 {
+        margin-left: 0 !important;
+    }
+
+    /* L'image n'apparaît pas sur mobile */
+    .d-none.d-lg-block {
+        display: none !important;
+    }
+
+    /* Supprimer le flou sur mobile pour meilleure lisibilité */
+    .inscription-form {
+        backdrop-filter: none !important;
+        background: linear-gradient(135deg, rgba(227, 242, 253, 0.9), rgba(255, 255, 255, 0.95)) !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .inscription-form {
+        padding: 2rem !important;
+        margin: 0 1rem;
+    }
+}
+
+/* Animation pour le bouton */
+.btn-primary {
+    transition: all 0.3s ease !important;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(13, 110, 253, 0.4) !important;
+}
+</style>
 @endsection

@@ -158,12 +158,6 @@
                              onerror="this.src='{{ asset('images/profill_default.webp') }}'">
                         <div class="image-overlay"></div>
 
-                        <!-- Note -->
-                        <div class="position-absolute bottom-0 start-0 m-3">
-                            <span class="badge bg-warning text-dark p-2">
-                                <i class="bi bi-star-fill"></i> 4.5
-                            </span>
-                        </div>
                     </div>
 
                     <div class="card-body p-4">

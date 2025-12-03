@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserDashboard;
 use App\Http\Controllers\CompleterProfilUser;
 use App\Http\Controllers\RechercheController;
+use App\Http\Controllers\ProfesseurController;
 use App\Models\User;
 
 Route::get('/', function () {
@@ -88,6 +89,10 @@ Route::get('/villes-populaires', function() {
 
     return response()->json($villes);
 });
+
+//Routes pour la listes de tout les professeurs
+
+Route::get('/professeurs', [ProfesseurController::class, 'index'])->name('professeurs.index');
 
 Route::middleware('auth')->group(function () {
 
