@@ -30,13 +30,14 @@
             box-sizing: border-box;
         }
 
+
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
             color: var(--text);
             min-height: 100vh;
 
-            padding: 20px;
+            padding: 0px;
         }
 
         .container {

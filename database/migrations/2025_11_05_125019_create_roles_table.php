@@ -14,12 +14,11 @@ return new class extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('name')
-                ->collation('utf8mb4_bin')
-                ->unique();
+            $table->string('name')->unique();
             $table->timestamps();
         });
-        //automatisation de l'insertion des roles
+
+        // Insertion automatique des rôles
         DB::table('roles')->insert([
             ['name' => 'admin'],
             ['name' => 'etudiant'],

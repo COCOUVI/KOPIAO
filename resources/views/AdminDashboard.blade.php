@@ -886,7 +886,7 @@
                     </a>
                 </div>
                 <div class="menu-item">
-                    <a href="#">
+                    <a href="{{ route('apprenants.index') }}">
                         <i class="fas fa-user-graduate"></i>
                         <span class="menu-text">Étudiants</span>
                     </a>
