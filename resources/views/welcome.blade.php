@@ -769,13 +769,13 @@
         </div>
 
         <!-- Bouton Voir plus -->
-        @if ($recentTutors->count() > 6)
+
             <div class="text-center mt-5" data-aos="fade-up">
                 <a href="{{ route('recherche.tuteur') }}" class="btn btn-primary btn-lg">
-                    Voir tous les tuteurs <i class="bi bi-arrow-right"></i>
+                <i class="bi bi-arrow-right"></i>    Voir tous les tuteurs
                 </a>
             </div>
-        @endif
+
     </section>
 
     <!-- Modals pour chaque tuteur -->

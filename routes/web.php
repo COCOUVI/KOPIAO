@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ApprenantController;
 use App\Http\Controllers\CompleterProfilUser;
 use App\Http\Controllers\ProfesseurController;
 use App\Http\Controllers\ProfileController;
@@ -22,7 +23,6 @@ Route::get('/', function () {
 
     return view('welcome', compact('recentTutors', 'totalTutors'));
 });
-
 
 Route::view('/tuteurs', 'teachers.tuteurs-list')->name('listProfesseur');
 
@@ -139,6 +139,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/edit', [CompleterProfilUser::class, 'edit'])->name('CompleterProfilUser.edit');
     Route::post('/profile/update', [CompleterProfilUser::class, 'update'])->name('CompleterProfilUser.update');
     Route::get('/profil/show', [CompleterProfilUser::class, 'show'])->name('CompleterProfilUser.show');
+
+    // Routes pour la gestion les apprenants
+    Route::resource('apprenants', ApprenantController::class);
+
+    // Routes supplémentaires pour les actions spécifiques
+    Route::put('/apprenants/{id}/validate', [ApprenantController::class, 'validateApprenant'])
+        ->name('apprenants.validate');
+
+    Route::put('/apprenants/{id}/toggle-status', [ApprenantController::class, 'toggleStatus'])
+        ->name('apprenants.toggle-status');
 
     // Route pour afficher la liste des professeurs
     // Route::get('/list_professeur',[TeacherController::class, 'listProfesseur'])->name('listProfesseur');
