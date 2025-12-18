@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-use Carbon\Carbon;
 
 class ApprenantController extends Controller
 {
@@ -25,6 +25,7 @@ class ApprenantController extends Controller
         // Calculer le pourcentage de complétion pour chaque apprenant
         $apprenants->transform(function ($apprenant) {
             $apprenant->profile_completion = $this->calculateProfileCompletion($apprenant);
+
             return $apprenant;
         });
 
@@ -114,73 +115,73 @@ class ApprenantController extends Controller
 
         $filled = 0;
         foreach ($fields as $field) {
-            if (!empty($user->$field)) {
+            if (! empty($user->$field)) {
                 $filled++;
             }
         }
 
         $total = count($fields);
+
         return $total > 0 ? round(($filled / $total) * 100) : 0;
     }
 
     /**
      * Afficher le formulaire de création
      */
-    public function create()
-    {
-        return view('apprenants.create');
-    }
+    // public function create()
+    // {
+    //   return view('apprenants.create');
+    // }
 
     /**
      * Enregistrer un nouvel apprenant
-*/
+     */
+   // public function store(Request $request)
+   // {
+        // $validated = $request->validate([
+        //   'firstname' => 'required|string|max:255',
+        // 'lastname' => 'required|string|max:255',
+        // 'email' => 'required|email|unique:users,email',
+        // 'telephone' => 'nullable|string|max:20',
+        // 'password' => 'required|string|min:8|confirmed',
+        // 'city' => 'required|string|max:255',
+        // 'bio' => 'nullable|string',
+        // 'learning_preference' => 'nullable|in:online,in_person,hybrid',
+        // 'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+        // 'is_active' => 'boolean',
+        // 'notify_email' => 'boolean', // Ajouter cette ligne
+        // ]);
 
-public function store(Request $request)
-{
-    $validated = $request->validate([
-        'firstname' => 'required|string|max:255',
-        'lastname' => 'required|string|max:255',
-        'email' => 'required|email|unique:users,email',
-        'telephone' => 'nullable|string|max:20',
-        'password' => 'required|string|min:8|confirmed',
-        'city' => 'required|string|max:255',
-        'bio' => 'nullable|string',
-        'learning_preference' => 'nullable|in:online,in_person,hybrid',
-        'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-        'is_active' => 'boolean',
-        'notify_email' => 'boolean', // Ajouter cette ligne
-    ]);
+        // Gestion de la photo de profil
+       // $photoPath = null;
+      //  if ($request->hasFile('photo')) {
+      //      $photoPath = $request->file('photo')->store('profile-photos', 'public');
+      //  }
 
-    // Gestion de la photo de profil
-    $photoPath = null;
-    if ($request->hasFile('photo')) {
-        $photoPath = $request->file('photo')->store('profile-photos', 'public');
-    }
+        // Défaut pour notify_push
+     //   $notifyPush = $request->has('notify_push') ? (bool) $request->input('notify_push') : true;
 
-    // Défaut pour notify_push
-    $notifyPush = $request->has('notify_push') ? (bool)$request->input('notify_push') : true;
+        // Création de l'apprenant
+        //   $apprenant = User::create([
+        //      'firstname' => $validated['firstname'],
+        //    'lastname' => $validated['lastname'],
+        //    'email' => $validated['email'],
+        //    'telephone' => $validated['telephone'] ?? null,
+        //    'password' => Hash::make($validated['password']),
+        //     'city' => $validated['city'],
+        //     'bio' => $validated['bio'] ?? null,
+        //     'learning_preference' => $validated['learning_preference'] ?? 'online',
+        //     'photo_path' => $photoPath,
+        //     'role_id' => 2, // Apprenant
+        //     'is_active' => $validated['is_active'] ?? true,
+        //      'is_valid' => false, // Par défaut non validé
+        //       'notify_email' => $validated['notify_email'] ?? true,
+        //      'notify_push' => $notifyPush,
+        // ]);
 
-    // Création de l'apprenant
-    $apprenant = User::create([
-        'firstname' => $validated['firstname'],
-        'lastname' => $validated['lastname'],
-        'email' => $validated['email'],
-        'telephone' => $validated['telephone'] ?? null,
-        'password' => Hash::make($validated['password']),
-        'city' => $validated['city'],
-        'bio' => $validated['bio'] ?? null,
-        'learning_preference' => $validated['learning_preference'] ?? 'online',
-        'photo_path' => $photoPath,
-        'role_id' => 2, // Apprenant
-        'is_active' => $validated['is_active'] ?? true,
-        'is_valid' => false, // Par défaut non validé
-        'notify_email' => $validated['notify_email'] ?? true,
-        'notify_push' => $notifyPush,
-    ]);
-
-    return redirect()->route('apprenants.index')
-        ->with('success', 'Apprenant créé avec succès!');
-}
+        // return redirect()->route('apprenants.index')
+        //    ->with('success', 'Apprenant créé avec succès!');
+   // }
 
     /**
      * Afficher les détails d'un apprenant
@@ -221,7 +222,7 @@ public function store(Request $request)
         $validated = $request->validate([
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $id,
+            'email' => 'required|email|unique:users,email,'.$id,
             'telephone' => 'nullable|string|max:20',
             'password' => 'nullable|string|min:8|confirmed',
             'city' => 'required|string|max:255',
@@ -246,7 +247,7 @@ public function store(Request $request)
         $apprenant->is_valid = $validated['is_valid'] ?? false;
 
         // Mise à jour du mot de passe si fourni
-        if (!empty($validated['password'])) {
+        if (! empty($validated['password'])) {
             $apprenant->password = Hash::make($validated['password']);
         }
 
@@ -312,10 +313,11 @@ public function store(Request $request)
             ->where('role_id', 2)
             ->firstOrFail();
 
-        $apprenant->is_active = !$apprenant->is_active;
+        $apprenant->is_active = ! $apprenant->is_active;
         $apprenant->save();
 
         $status = $apprenant->is_active ? 'activé' : 'désactivé';
+
         return redirect()->back()
             ->with('success', "Apprenant $status avec succès!");
     }

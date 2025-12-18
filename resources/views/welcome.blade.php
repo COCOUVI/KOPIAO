@@ -25,10 +25,10 @@
                             <i class="bi bi-geo-alt"></i>
                             <span>Disponible dans plusieurs pays et régions du monde</span>
                         </div>
-                   <div class="detail-item" data-aos="fade-up" data-aos-delay="350">
-    <i class="bi bi-people"></i>
-    <span>+{{ $totalTutors }} tuteurs certifiés à l'international</span>
-</div>
+                        <div class="detail-item" data-aos="fade-up" data-aos-delay="350">
+                            <i class="bi bi-people"></i>
+                            <span>+{{ $totalTutors }} tuteurs certifiés à l'international</span>
+                        </div>
 
                         <div class="detail-item" data-aos="fade-up" data-aos-delay="400">
                             <i class="bi bi-cash-stack"></i>
@@ -76,578 +76,579 @@
     <section id="about" class="about section" style="margin-top: 0px;">
 
 
-<div class="cta-section py-5" data-aos="fade-up" data-aos-delay="100">
-    <div class="container">
-        <div class="text-center mb-4">
-            <h2 class="fw-bold" style="color:#0d6efd;">Trouver un Tuteur Qualifié</h2>
-            <p class="text-muted">Recherchez parmi nos meilleurs professeurs particuliers</p>
-        </div>
-
-        <form action="{{ route('recherche.tuteur') }}" method="GET"
-            class="search-bar p-4 p-lg-5 rounded-4 shadow-lg"
-            style="background: linear-gradient(135deg, #e8f1ff 0%, #f0f7ff 100%); border-left: 6px solid #0d6efd;">
-
-            <div class="row g-3 align-items-end">
-                <!-- Matière -->
-                <div class="col-md-4">
-                    <label class="form-label fw-semibold" style="color:#0d6efd;">Cours</label>
-                    <input type="text" name="subject" class="form-control form-control-lg border-primary-subtle"
-                        placeholder="Ex : Mathématiques, Anglais..." id="subjectInput"
-                        value="{{ old('subject', request('subject')) }}">
+        <div class="cta-section py-5" data-aos="fade-up" data-aos-delay="100">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold" style="color:#0d6efd;">Trouver un Tuteur Qualifié</h2>
+                    <p class="text-muted">Recherchez parmi nos meilleurs professeurs particuliers</p>
                 </div>
 
-                <!-- Ville -->
-                <div class="col-md-3">
-                    <label class="form-label fw-semibold" style="color:#0d6efd;">Ville</label>
-                    <input type="text" name="city" class="form-control form-control-lg border-primary-subtle"
-                        placeholder="Entrez une ville" id="cityInput" value="{{ old('city', request('city')) }}">
+                <form action="{{ route('recherche.tuteur') }}" method="GET"
+                    class="search-bar p-4 p-lg-5 rounded-4 shadow-lg"
+                    style="background: linear-gradient(135deg, #e8f1ff 0%, #f0f7ff 100%); border-left: 6px solid #0d6efd;">
+
+                    <div class="row g-3 align-items-end">
+                        <!-- Matière -->
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold" style="color:#0d6efd;">Cours</label>
+                            <input type="text" name="subject" class="form-control form-control-lg border-primary-subtle"
+                                placeholder="Ex : Mathématiques, Anglais..." id="subjectInput"
+                                value="{{ old('subject', request('subject')) }}">
+                        </div>
+
+                        <!-- Ville -->
+                        <div class="col-md-3">
+                            <label class="form-label fw-semibold" style="color:#0d6efd;">Ville</label>
+                            <input type="text" name="city" class="form-control form-control-lg border-primary-subtle"
+                                placeholder="Entrez une ville" id="cityInput" value="{{ old('city', request('city')) }}">
+                        </div>
+
+                        <!-- Préférence d'apprentissage -->
+                        <div class="col-md-3">
+                            <label class="form-label fw-semibold" style="color:#0d6efd;">Mode d'apprentissage</label>
+                            <select name="learning_preference" class="form-control form-control-lg border-primary-subtle">
+                                <option value="">Tous les modes</option>
+                                <option value="online" {{ request('learning_preference') == 'online' ? 'selected' : '' }}>En
+                                    Ligne</option>
+                                <option value="in_person"
+                                    {{ request('learning_preference') == 'in_person' ? 'selected' : '' }}>Présentiel
+                                </option>
+                                <option value="both" {{ request('learning_preference') == 'both' ? 'selected' : '' }}>Les
+                                    deux</option>
+                            </select>
+                        </div>
+
+                        <!-- Bouton Rechercher -->
+                        <div class="col-md-2 d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg px-4" style="height: 56px;">
+                                <i class="bi bi-search me-2"></i>Rechercher
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Matières populaires défilantes -->
+                <div class="mt-5">
+                    <h5 class="text-center mb-4 fw-semibold" style="color:#0d6efd;">
+                        <i class="bi bi-lightning-charge-fill me-2"></i>Cours populaires
+                    </h5>
+                    <div class="matieres-container position-relative overflow-hidden">
+                        <div class="navigation-buttons left">
+                            <button class="btn-scroll-prev btn btn-sm btn-outline-primary">
+                                <i class="bi bi-chevron-left"></i>
+                            </button>
+                        </div>
+                        <div class="matieres-scroll d-flex gap-3" style="transition: transform 0.3s ease;">
+                            <!-- Les matières seront chargées dynamiquement -->
+                        </div>
+                        <div class="navigation-buttons right">
+                            <button class="btn-scroll-next btn btn-sm btn-outline-primary">
+                                <i class="bi bi-chevron-right"></i>
+                            </button>
+                        </div>
+                        <div class="scroll-shadow left"></div>
+                        <div class="scroll-shadow right"></div>
+                    </div>
                 </div>
 
-                <!-- Préférence d'apprentissage -->
-                <div class="col-md-3">
-                    <label class="form-label fw-semibold" style="color:#0d6efd;">Mode d'apprentissage</label>
-                    <select name="learning_preference" class="form-control form-control-lg border-primary-subtle">
-                        <option value="">Tous les modes</option>
-                        <option value="online" {{ request('learning_preference') == 'online' ? 'selected' : '' }}>En
-                            Ligne</option>
-                        <option value="in_person"
-                            {{ request('learning_preference') == 'in_person' ? 'selected' : '' }}>Présentiel
-                        </option>
-                        <option value="both" {{ request('learning_preference') == 'both' ? 'selected' : '' }}>Les
-                            deux</option>
-                    </select>
-                </div>
-
-                <!-- Bouton Rechercher -->
-                <div class="col-md-2 d-grid">
-                    <button type="submit" class="btn btn-primary btn-lg px-4" style="height: 56px;">
-                        <i class="bi bi-search me-2"></i>Rechercher
-                    </button>
+                <!-- Villes populaires défilantes -->
+                <div class="mt-4">
+                    <h5 class="text-center mb-4 fw-semibold" style="color:#dc3545;">
+                        <i class="bi bi-geo-alt-fill me-2"></i>Villes populaires
+                    </h5>
+                    <div class="villes-container position-relative overflow-hidden">
+                        <div class="navigation-buttons left">
+                            <button class="btn-scroll-prev-villes btn btn-sm btn-outline-danger">
+                                <i class="bi bi-chevron-left"></i>
+                            </button>
+                        </div>
+                        <div class="villes-scroll d-flex gap-3" style="transition: transform 0.3s ease;">
+                            <!-- Les villes seront chargées dynamiquement -->
+                        </div>
+                        <div class="navigation-buttons right">
+                            <button class="btn-scroll-next-villes btn btn-sm btn-outline-danger">
+                                <i class="bi bi-chevron-right"></i>
+                            </button>
+                        </div>
+                        <div class="scroll-shadow left"></div>
+                        <div class="scroll-shadow right"></div>
+                    </div>
                 </div>
             </div>
-        </form>
-
-        <!-- Matières populaires défilantes -->
-        <div class="mt-5">
-            <h5 class="text-center mb-4 fw-semibold" style="color:#0d6efd;">
-                <i class="bi bi-lightning-charge-fill me-2"></i>Cours populaires
-            </h5>
-            <div class="matieres-container position-relative overflow-hidden">
-                <div class="navigation-buttons left">
-                    <button class="btn-scroll-prev btn btn-sm btn-outline-primary">
-                        <i class="bi bi-chevron-left"></i>
-                    </button>
-                </div>
-                <div class="matieres-scroll d-flex gap-3" style="transition: transform 0.3s ease;">
-                    <!-- Les matières seront chargées dynamiquement -->
-                </div>
-                <div class="navigation-buttons right">
-                    <button class="btn-scroll-next btn btn-sm btn-outline-primary">
-                        <i class="bi bi-chevron-right"></i>
-                    </button>
-                </div>
-                <div class="scroll-shadow left"></div>
-                <div class="scroll-shadow right"></div>
-            </div>
         </div>
 
-        <!-- Villes populaires défilantes -->
-        <div class="mt-4">
-            <h5 class="text-center mb-4 fw-semibold" style="color:#dc3545;">
-                <i class="bi bi-geo-alt-fill me-2"></i>Villes populaires
-            </h5>
-            <div class="villes-container position-relative overflow-hidden">
-                <div class="navigation-buttons left">
-                    <button class="btn-scroll-prev-villes btn btn-sm btn-outline-danger">
-                        <i class="bi bi-chevron-left"></i>
-                    </button>
-                </div>
-                <div class="villes-scroll d-flex gap-3" style="transition: transform 0.3s ease;">
-                    <!-- Les villes seront chargées dynamiquement -->
-                </div>
-                <div class="navigation-buttons right">
-                    <button class="btn-scroll-next-villes btn btn-sm btn-outline-danger">
-                        <i class="bi bi-chevron-right"></i>
-                    </button>
-                </div>
-                <div class="scroll-shadow left"></div>
-                <div class="scroll-shadow right"></div>
-            </div>
-        </div>
-    </div>
-</div>
+        <!-- Script pour le défilement des matières et villes -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Variables globales pour le contrôle du défilement
+                let scrollPositionMatiere = 0;
+                let scrollPositionVille = 0;
+                let autoScrollMatiere = true;
+                let autoScrollVille = true;
+                let scrollSpeedMatiere = 1;
+                let scrollSpeedVille = 1; // Même sens que les matières
+                let animationFrameIdMatiere = null;
+                let animationFrameIdVille = null;
+                let matieresScrollWidth = 0;
+                let villesScrollWidth = 0;
 
-<!-- Script pour le défilement des matières et villes -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Variables globales pour le contrôle du défilement
-        let scrollPositionMatiere = 0;
-        let scrollPositionVille = 0;
-        let autoScrollMatiere = true;
-        let autoScrollVille = true;
-        let scrollSpeedMatiere = 1;
-        let scrollSpeedVille = 1; // Même sens que les matières
-        let animationFrameIdMatiere = null;
-        let animationFrameIdVille = null;
-        let matieresScrollWidth = 0;
-        let villesScrollWidth = 0;
+                // Récupérer les matières populaires
+                fetch('/matieres-populaires')
+                    .then(response => response.json())
+                    .then(matieres => {
+                        const container = document.querySelector('.matieres-scroll');
 
-        // Récupérer les matières populaires
-        fetch('/matieres-populaires')
-            .then(response => response.json())
-            .then(matieres => {
-                const container = document.querySelector('.matieres-scroll');
+                        // Vider le conteneur au cas où
+                        container.innerHTML = '';
 
-                // Vider le conteneur au cas où
-                container.innerHTML = '';
+                        // Créer les badges de matière
+                        matieres.forEach(matiere => {
+                            const badge = createMatiereBadge(matiere);
+                            container.appendChild(badge);
+                        });
 
-                // Créer les badges de matière
-                matieres.forEach(matiere => {
-                    const badge = createMatiereBadge(matiere);
-                    container.appendChild(badge);
-                });
+                        // Dupliquer pour effet infini
+                        matieres.forEach(matiere => {
+                            const badge = createMatiereBadge(matiere);
+                            container.appendChild(badge);
+                        });
 
-                // Dupliquer pour effet infini
-                matieres.forEach(matiere => {
-                    const badge = createMatiereBadge(matiere);
-                    container.appendChild(badge);
-                });
+                        // Attendre que le DOM soit mis à jour
+                        setTimeout(() => {
+                            matieresScrollWidth = container.scrollWidth / 2;
+                            startAutoScrollMatiere();
+                            setupScrollControlsMatiere();
+                        }, 100);
+                    })
+                    .catch(error => {
+                        console.error('Erreur lors du chargement des matières:', error);
+                        loadDefaultMatieres();
+                    });
 
-                // Attendre que le DOM soit mis à jour
-                setTimeout(() => {
-                    matieresScrollWidth = container.scrollWidth / 2;
-                    startAutoScrollMatiere();
-                    setupScrollControlsMatiere();
-                }, 100);
-            })
-            .catch(error => {
-                console.error('Erreur lors du chargement des matières:', error);
-                loadDefaultMatieres();
-            });
+                // Récupérer les villes populaires
+                fetch('/villes-populaires')
+                    .then(response => response.json())
+                    .then(villes => {
+                        const container = document.querySelector('.villes-scroll');
 
-        // Récupérer les villes populaires
-        fetch('/villes-populaires')
-            .then(response => response.json())
-            .then(villes => {
-                const container = document.querySelector('.villes-scroll');
+                        // Vider le conteneur au cas où
+                        container.innerHTML = '';
 
-                // Vider le conteneur au cas où
-                container.innerHTML = '';
+                        // Créer les badges de ville
+                        villes.forEach(ville => {
+                            const badge = createVilleBadge(ville);
+                            container.appendChild(badge);
+                        });
 
-                // Créer les badges de ville
-                villes.forEach(ville => {
-                    const badge = createVilleBadge(ville);
-                    container.appendChild(badge);
-                });
+                        // Dupliquer pour effet infini
+                        villes.forEach(ville => {
+                            const badge = createVilleBadge(ville);
+                            container.appendChild(badge);
+                        });
 
-                // Dupliquer pour effet infini
-                villes.forEach(ville => {
-                    const badge = createVilleBadge(ville);
-                    container.appendChild(badge);
-                });
+                        // Attendre que le DOM soit mis à jour
+                        setTimeout(() => {
+                            villesScrollWidth = container.scrollWidth / 2;
+                            startAutoScrollVille();
+                            setupScrollControlsVille();
+                        }, 100);
+                    })
+                    .catch(error => {
+                        console.error('Erreur lors du chargement des villes:', error);
+                        loadDefaultVilles();
+                    });
 
-                // Attendre que le DOM soit mis à jour
-                setTimeout(() => {
-                    villesScrollWidth = container.scrollWidth / 2;
-                    startAutoScrollVille();
-                    setupScrollControlsVille();
-                }, 100);
-            })
-            .catch(error => {
-                console.error('Erreur lors du chargement des villes:', error);
-                loadDefaultVilles();
-            });
+                // Fonctions de création des badges
+                function createMatiereBadge(matiere) {
+                    const badge = document.createElement('button');
+                    badge.className = 'matiere-badge btn btn-outline-primary rounded-pill px-4 py-2';
+                    badge.type = 'button';
+                    badge.style.whiteSpace = 'nowrap';
+                    badge.style.flexShrink = '0';
+                    badge.innerHTML = `<i class="bi bi-book me-1"></i>${matiere}`;
+                    badge.onclick = function() {
+                        document.getElementById('subjectInput').value = matiere;
+                    };
+                    return badge;
+                }
 
-        // Fonctions de création des badges
-        function createMatiereBadge(matiere) {
-            const badge = document.createElement('button');
-            badge.className = 'matiere-badge btn btn-outline-primary rounded-pill px-4 py-2';
-            badge.type = 'button';
-            badge.style.whiteSpace = 'nowrap';
-            badge.style.flexShrink = '0';
-            badge.innerHTML = `<i class="bi bi-book me-1"></i>${matiere}`;
-            badge.onclick = function() {
-                document.getElementById('subjectInput').value = matiere;
-            };
-            return badge;
-        }
+                function createVilleBadge(ville) {
+                    const badge = document.createElement('button');
+                    badge.className = 'ville-badge btn btn-outline-danger rounded-pill px-4 py-2';
+                    badge.type = 'button';
+                    badge.style.whiteSpace = 'nowrap';
+                    badge.style.flexShrink = '0';
+                    badge.innerHTML = `<i class="bi bi-geo-alt me-1"></i>${ville}`;
+                    badge.onclick = function() {
+                        document.getElementById('cityInput').value = ville;
+                    };
+                    return badge;
+                }
 
-        function createVilleBadge(ville) {
-            const badge = document.createElement('button');
-            badge.className = 'ville-badge btn btn-outline-danger rounded-pill px-4 py-2';
-            badge.type = 'button';
-            badge.style.whiteSpace = 'nowrap';
-            badge.style.flexShrink = '0';
-            badge.innerHTML = `<i class="bi bi-geo-alt me-1"></i>${ville}`;
-            badge.onclick = function() {
-                document.getElementById('cityInput').value = ville;
-            };
-            return badge;
-        }
+                // Défilement automatique pour les matières
+                function startAutoScrollMatiere() {
+                    const container = document.querySelector('.matieres-scroll');
 
-        // Défilement automatique pour les matières
-        function startAutoScrollMatiere() {
-            const container = document.querySelector('.matieres-scroll');
+                    function animate() {
+                        if (autoScrollMatiere) {
+                            scrollPositionMatiere -= scrollSpeedMatiere;
 
-            function animate() {
-                if (autoScrollMatiere) {
-                    scrollPositionMatiere -= scrollSpeedMatiere;
+                            if (Math.abs(scrollPositionMatiere) >= matieresScrollWidth) {
+                                scrollPositionMatiere = 0;
+                                container.style.transition = 'none';
+                                container.style.transform = `translateX(${scrollPositionMatiere}px)`;
+                                // Forcer un reflow
+                                container.offsetHeight;
+                                container.style.transition = 'transform 0.3s ease';
+                            }
 
-                    if (Math.abs(scrollPositionMatiere) >= matieresScrollWidth) {
-                        scrollPositionMatiere = 0;
-                        container.style.transition = 'none';
+                            container.style.transform = `translateX(${scrollPositionMatiere}px)`;
+                        }
+                        animationFrameIdMatiere = requestAnimationFrame(animate);
+                    }
+
+                    if (animationFrameIdMatiere) {
+                        cancelAnimationFrame(animationFrameIdMatiere);
+                    }
+                    animate();
+                }
+
+                // Défilement automatique pour les villes
+                function startAutoScrollVille() {
+                    const container = document.querySelector('.villes-scroll');
+
+                    function animate() {
+                        if (autoScrollVille) {
+                            scrollPositionVille -= scrollSpeedVille;
+
+                            if (Math.abs(scrollPositionVille) >= villesScrollWidth) {
+                                scrollPositionVille = 0;
+                                container.style.transition = 'none';
+                                container.style.transform = `translateX(${scrollPositionVille}px)`;
+                                // Forcer un reflow
+                                container.offsetHeight;
+                                container.style.transition = 'transform 0.3s ease';
+                            }
+
+                            container.style.transform = `translateX(${scrollPositionVille}px)`;
+                        }
+                        animationFrameIdVille = requestAnimationFrame(animate);
+                    }
+
+                    if (animationFrameIdVille) {
+                        cancelAnimationFrame(animationFrameIdVille);
+                    }
+                    animate();
+                }
+
+                // Contrôles manuels pour les matières
+                function setupScrollControlsMatiere() {
+                    const container = document.querySelector('.matieres-scroll');
+                    const btnPrev = document.querySelector('.btn-scroll-prev');
+                    const btnNext = document.querySelector('.btn-scroll-next');
+
+                    btnPrev.addEventListener('click', function() {
+                        autoScrollMatiere = false;
+                        scrollPositionMatiere += 150;
                         container.style.transform = `translateX(${scrollPositionMatiere}px)`;
-                        // Forcer un reflow
-                        container.offsetHeight;
-                        container.style.transition = 'transform 0.3s ease';
-                    }
 
-                    container.style.transform = `translateX(${scrollPositionMatiere}px)`;
+                        // Réactiver le défilement automatique après 3 secondes
+                        setTimeout(() => autoScrollMatiere = true, 3000);
+                    });
+
+                    btnNext.addEventListener('click', function() {
+                        autoScrollMatiere = false;
+                        scrollPositionMatiere -= 150;
+                        container.style.transform = `translateX(${scrollPositionMatiere}px)`;
+
+                        // Réactiver le défilement automatique après 3 secondes
+                        setTimeout(() => autoScrollMatiere = true, 3000);
+                    });
+
+                    // Pause au survol
+                    const matieresContainer = container.parentElement;
+                    matieresContainer.addEventListener('mouseenter', () => autoScrollMatiere = false);
+                    matieresContainer.addEventListener('mouseleave', () => autoScrollMatiere = true);
                 }
-                animationFrameIdMatiere = requestAnimationFrame(animate);
-            }
 
-            if (animationFrameIdMatiere) {
-                cancelAnimationFrame(animationFrameIdMatiere);
-            }
-            animate();
-        }
+                // Contrôles manuels pour les villes
+                function setupScrollControlsVille() {
+                    const container = document.querySelector('.villes-scroll');
+                    const btnPrev = document.querySelector('.btn-scroll-prev-villes');
+                    const btnNext = document.querySelector('.btn-scroll-next-villes');
 
-        // Défilement automatique pour les villes
-        function startAutoScrollVille() {
-            const container = document.querySelector('.villes-scroll');
-
-            function animate() {
-                if (autoScrollVille) {
-                    scrollPositionVille -= scrollSpeedVille;
-
-                    if (Math.abs(scrollPositionVille) >= villesScrollWidth) {
-                        scrollPositionVille = 0;
-                        container.style.transition = 'none';
+                    btnPrev.addEventListener('click', function() {
+                        autoScrollVille = false;
+                        scrollPositionVille += 150;
                         container.style.transform = `translateX(${scrollPositionVille}px)`;
-                        // Forcer un reflow
-                        container.offsetHeight;
-                        container.style.transition = 'transform 0.3s ease';
-                    }
 
-                    container.style.transform = `translateX(${scrollPositionVille}px)`;
+                        // Réactiver le défilement automatique après 3 secondes
+                        setTimeout(() => autoScrollVille = true, 3000);
+                    });
+
+                    btnNext.addEventListener('click', function() {
+                        autoScrollVille = false;
+                        scrollPositionVille -= 150;
+                        container.style.transform = `translateX(${scrollPositionVille}px)`;
+
+                        // Réactiver le défilement automatique après 3 secondes
+                        setTimeout(() => autoScrollVille = true, 3000);
+                    });
+
+                    // Pause au survol
+                    const villesContainer = container.parentElement;
+                    villesContainer.addEventListener('mouseenter', () => autoScrollVille = false);
+                    villesContainer.addEventListener('mouseleave', () => autoScrollVille = true);
                 }
-                animationFrameIdVille = requestAnimationFrame(animate);
+
+                // Fonctions de secours
+                function loadDefaultMatieres() {
+                    const matieresParDefaut = [
+                        'Mathématiques', 'Français', 'Anglais', 'Physique', 'Chimie',
+                        'SVT', 'Histoire', 'Géographie', 'Philosophie', 'Espagnol',
+                        'Allemand', 'Informatique', 'Économie', 'Droit', 'Marketing',
+                        'Comptabilité', 'Musique', 'Arts', 'Sport', 'Médecine'
+                    ];
+
+                    const container = document.querySelector('.matieres-scroll');
+                    container.innerHTML = '';
+
+                    matieresParDefaut.forEach(matiere => {
+                        const badge = createMatiereBadge(matiere);
+                        container.appendChild(badge);
+                    });
+
+                    matieresParDefaut.forEach(matiere => {
+                        const badge = createMatiereBadge(matiere);
+                        container.appendChild(badge);
+                    });
+
+                    setTimeout(() => {
+                        matieresScrollWidth = container.scrollWidth / 2;
+                        startAutoScrollMatiere();
+                        setupScrollControlsMatiere();
+                    }, 100);
+                }
+
+                function loadDefaultVilles() {
+                    const villesParDefaut = [
+                        'Paris', 'Lyon', 'Marseille', 'Toulouse', 'Nice',
+                        'Nantes', 'Strasbourg', 'Montpellier', 'Bordeaux', 'Lille',
+                        'Rennes', 'Reims', 'Le Havre', 'Saint-Étienne', 'Toulon'
+                    ];
+
+                    const container = document.querySelector('.villes-scroll');
+                    container.innerHTML = '';
+
+                    villesParDefaut.forEach(ville => {
+                        const badge = createVilleBadge(ville);
+                        container.appendChild(badge);
+                    });
+
+                    villesParDefaut.forEach(ville => {
+                        const badge = createVilleBadge(ville);
+                        container.appendChild(badge);
+                    });
+
+                    setTimeout(() => {
+                        villesScrollWidth = container.scrollWidth / 2;
+                        startAutoScrollVille();
+                        setupScrollControlsVille();
+                    }, 100);
+                }
+            });
+        </script>
+
+        <style>
+            /* Styles pour les badges de matière et ville */
+            .matiere-badge,
+            .ville-badge {
+                transition: all 0.3s ease;
+                border-width: 2px;
+                flex-shrink: 0;
             }
 
-            if (animationFrameIdVille) {
-                cancelAnimationFrame(animationFrameIdVille);
+            .matiere-badge:hover {
+                background-color: #0d6efd !important;
+                color: white !important;
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
             }
-            animate();
-        }
 
-        // Contrôles manuels pour les matières
-        function setupScrollControlsMatiere() {
-            const container = document.querySelector('.matieres-scroll');
-            const btnPrev = document.querySelector('.btn-scroll-prev');
-            const btnNext = document.querySelector('.btn-scroll-next');
+            .ville-badge:hover {
+                background-color: #dc3545 !important;
+                color: white !important;
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+            }
 
-            btnPrev.addEventListener('click', function() {
-                autoScrollMatiere = false;
-                scrollPositionMatiere += 150;
-                container.style.transform = `translateX(${scrollPositionMatiere}px)`;
+            .matiere-badge:active,
+            .ville-badge:active {
+                transform: translateY(0);
+            }
 
-                // Réactiver le défilement automatique après 3 secondes
-                setTimeout(() => autoScrollMatiere = true, 3000);
-            });
+            .matiere-badge i,
+            .ville-badge i {
+                margin-right: 5px;
+            }
 
-            btnNext.addEventListener('click', function() {
-                autoScrollMatiere = false;
-                scrollPositionMatiere -= 150;
-                container.style.transform = `translateX(${scrollPositionMatiere}px)`;
+            /* Containers de défilement */
+            .matieres-container,
+            .villes-container {
+                height: 70px;
+                overflow: hidden;
+                position: relative;
+                padding: 0 40px;
+            }
 
-                // Réactiver le défilement automatique après 3 secondes
-                setTimeout(() => autoScrollMatiere = true, 3000);
-            });
+            .matieres-scroll,
+            .villes-scroll {
+                display: flex;
+                position: absolute;
+                left: 0;
+                top: 0;
+                transition: transform 0.3s ease;
+            }
 
-            // Pause au survol
-            const matieresContainer = container.parentElement;
-            matieresContainer.addEventListener('mouseenter', () => autoScrollMatiere = false);
-            matieresContainer.addEventListener('mouseleave', () => autoScrollMatiere = true);
-        }
+            /* Boutons de navigation */
+            .navigation-buttons {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 10;
+                background: rgba(255, 255, 255, 0.95);
+                padding: 5px;
+                border-radius: 8px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
 
-        // Contrôles manuels pour les villes
-        function setupScrollControlsVille() {
-            const container = document.querySelector('.villes-scroll');
-            const btnPrev = document.querySelector('.btn-scroll-prev-villes');
-            const btnNext = document.querySelector('.btn-scroll-next-villes');
+            .navigation-buttons.left {
+                left: 10px;
+            }
 
-            btnPrev.addEventListener('click', function() {
-                autoScrollVille = false;
-                scrollPositionVille += 150;
-                container.style.transform = `translateX(${scrollPositionVille}px)`;
+            .navigation-buttons.right {
+                right: 10px;
+            }
 
-                // Réactiver le défilement automatique après 3 secondes
-                setTimeout(() => autoScrollVille = true, 3000);
-            });
+            .btn-scroll-prev,
+            .btn-scroll-next,
+            .btn-scroll-prev-villes,
+            .btn-scroll-next-villes {
+                padding: 5px 10px;
+                border-radius: 50%;
+                width: 36px;
+                height: 36px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+            }
 
-            btnNext.addEventListener('click', function() {
-                autoScrollVille = false;
-                scrollPositionVille -= 150;
-                container.style.transform = `translateX(${scrollPositionVille}px)`;
+            .btn-scroll-prev:hover,
+            .btn-scroll-next:hover {
+                background-color: #0d6efd;
+                color: white;
+            }
 
-                // Réactiver le défilement automatique après 3 secondes
-                setTimeout(() => autoScrollVille = true, 3000);
-            });
+            .btn-scroll-prev-villes:hover,
+            .btn-scroll-next-villes:hover {
+                background-color: #dc3545;
+                color: white;
+            }
 
-            // Pause au survol
-            const villesContainer = container.parentElement;
-            villesContainer.addEventListener('mouseenter', () => autoScrollVille = false);
-            villesContainer.addEventListener('mouseleave', () => autoScrollVille = true);
-        }
+            /* Ombres de dégradé */
+            .scroll-shadow {
+                position: absolute;
+                top: 0;
+                width: 50px;
+                height: 100%;
+                pointer-events: none;
+                z-index: 2;
+            }
 
-        // Fonctions de secours
-        function loadDefaultMatieres() {
-            const matieresParDefaut = [
-                'Mathématiques', 'Français', 'Anglais', 'Physique', 'Chimie',
-                'SVT', 'Histoire', 'Géographie', 'Philosophie', 'Espagnol',
-                'Allemand', 'Informatique', 'Économie', 'Droit', 'Marketing',
-                'Comptabilité', 'Musique', 'Arts', 'Sport', 'Médecine'
-            ];
+            .scroll-shadow.left {
+                left: 0;
+                background: linear-gradient(to right, white 0%, transparent 100%);
+            }
 
-            const container = document.querySelector('.matieres-scroll');
-            container.innerHTML = '';
+            .scroll-shadow.right {
+                right: 0;
+                background: linear-gradient(to left, white 0%, transparent 100%);
+            }
 
-            matieresParDefaut.forEach(matiere => {
-                const badge = createMatiereBadge(matiere);
-                container.appendChild(badge);
-            });
+            /* Styles du formulaire */
+            .search-bar {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
 
-            matieresParDefaut.forEach(matiere => {
-                const badge = createMatiereBadge(matiere);
-                container.appendChild(badge);
-            });
+            .search-bar:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 10px 25px rgba(13, 110, 253, 0.15) !important;
+            }
 
-            setTimeout(() => {
-                matieresScrollWidth = container.scrollWidth / 2;
-                startAutoScrollMatiere();
-                setupScrollControlsMatiere();
-            }, 100);
-        }
+            .form-control-lg {
+                height: 56px;
+                border-radius: 12px;
+            }
 
-        function loadDefaultVilles() {
-            const villesParDefaut = [
-                'Paris', 'Lyon', 'Marseille', 'Toulouse', 'Nice',
-                'Nantes', 'Strasbourg', 'Montpellier', 'Bordeaux', 'Lille',
-                'Rennes', 'Reims', 'Le Havre', 'Saint-Étienne', 'Toulon'
-            ];
+            .form-control-lg:focus {
+                border-color: #0d6efd;
+                box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+            }
 
-            const container = document.querySelector('.villes-scroll');
-            container.innerHTML = '';
+            .btn-primary {
+                border-radius: 12px;
+                background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+                border: none;
+                transition: all 0.3s ease;
+            }
 
-            villesParDefaut.forEach(ville => {
-                const badge = createVilleBadge(ville);
-                container.appendChild(badge);
-            });
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(13, 110, 253, 0.4);
+            }
 
-            villesParDefaut.forEach(ville => {
-                const badge = createVilleBadge(ville);
-                container.appendChild(badge);
-            });
+            /* Responsive */
+            @media (max-width: 768px) {
+                .cta-section {
+                    padding: 2rem 0 !important;
+                }
 
-            setTimeout(() => {
-                villesScrollWidth = container.scrollWidth / 2;
-                startAutoScrollVille();
-                setupScrollControlsVille();
-            }, 100);
-        }
-    });
-</script>
+                .search-bar {
+                    padding: 1.5rem !important;
+                }
 
-<style>
-    /* Styles pour les badges de matière et ville */
-    .matiere-badge,
-    .ville-badge {
-        transition: all 0.3s ease;
-        border-width: 2px;
-        flex-shrink: 0;
-    }
+                .matieres-container,
+                .villes-container {
+                    height: 60px;
+                    padding: 0 35px;
+                }
 
-    .matiere-badge:hover {
-        background-color: #0d6efd !important;
-        color: white !important;
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
-    }
+                .matiere-badge,
+                .ville-badge {
+                    padding: 0.5rem 1rem !important;
+                    font-size: 0.9rem;
+                }
 
-    .ville-badge:hover {
-        background-color: #dc3545 !important;
-        color: white !important;
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
-    }
+                .navigation-buttons {
+                    display: none;
+                }
+            }
 
-    .matiere-badge:active,
-    .ville-badge:active {
-        transform: translateY(0);
-    }
+            @media (max-width: 576px) {
 
-    .matiere-badge i,
-    .ville-badge i {
-        margin-right: 5px;
-    }
+                .matieres-container,
+                .villes-container {
+                    height: 50px;
+                }
 
-    /* Containers de défilement */
-    .matieres-container,
-    .villes-container {
-        height: 70px;
-        overflow: hidden;
-        position: relative;
-        padding: 0 40px;
-    }
-
-    .matieres-scroll,
-    .villes-scroll {
-        display: flex;
-        position: absolute;
-        left: 0;
-        top: 0;
-        transition: transform 0.3s ease;
-    }
-
-    /* Boutons de navigation */
-    .navigation-buttons {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 10;
-        background: rgba(255, 255, 255, 0.95);
-        padding: 5px;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-    .navigation-buttons.left {
-        left: 10px;
-    }
-
-    .navigation-buttons.right {
-        right: 10px;
-    }
-
-    .btn-scroll-prev,
-    .btn-scroll-next,
-    .btn-scroll-prev-villes,
-    .btn-scroll-next-villes {
-        padding: 5px 10px;
-        border-radius: 50%;
-        width: 36px;
-        height: 36px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-    }
-
-    .btn-scroll-prev:hover,
-    .btn-scroll-next:hover {
-        background-color: #0d6efd;
-        color: white;
-    }
-
-    .btn-scroll-prev-villes:hover,
-    .btn-scroll-next-villes:hover {
-        background-color: #dc3545;
-        color: white;
-    }
-
-    /* Ombres de dégradé */
-    .scroll-shadow {
-        position: absolute;
-        top: 0;
-        width: 50px;
-        height: 100%;
-        pointer-events: none;
-        z-index: 2;
-    }
-
-    .scroll-shadow.left {
-        left: 0;
-        background: linear-gradient(to right, white 0%, transparent 100%);
-    }
-
-    .scroll-shadow.right {
-        right: 0;
-        background: linear-gradient(to left, white 0%, transparent 100%);
-    }
-
-    /* Styles du formulaire */
-    .search-bar {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .search-bar:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba(13, 110, 253, 0.15) !important;
-    }
-
-    .form-control-lg {
-        height: 56px;
-        border-radius: 12px;
-    }
-
-    .form-control-lg:focus {
-        border-color: #0d6efd;
-        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-    }
-
-    .btn-primary {
-        border-radius: 12px;
-        background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
-        border: none;
-        transition: all 0.3s ease;
-    }
-
-    .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(13, 110, 253, 0.4);
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .cta-section {
-            padding: 2rem 0 !important;
-        }
-
-        .search-bar {
-            padding: 1.5rem !important;
-        }
-
-        .matieres-container,
-        .villes-container {
-            height: 60px;
-            padding: 0 35px;
-        }
-
-        .matiere-badge,
-        .ville-badge {
-            padding: 0.5rem 1rem !important;
-            font-size: 0.9rem;
-        }
-
-        .navigation-buttons {
-            display: none;
-        }
-    }
-
-    @media (max-width: 576px) {
-        .matieres-container,
-        .villes-container {
-            height: 50px;
-        }
-
-        .matiere-badge,
-        .ville-badge {
-            padding: 0.4rem 0.8rem !important;
-            font-size: 0.85rem;
-        }
-    }
-</style>
+                .matiere-badge,
+                .ville-badge {
+                    padding: 0.4rem 0.8rem !important;
+                    font-size: 0.85rem;
+                }
+            }
+        </style>
 
     </section><!-- /About Section -->
 
@@ -770,11 +771,11 @@
 
         <!-- Bouton Voir plus -->
 
-            <div class="text-center mt-5" data-aos="fade-up">
-                <a href="{{ route('recherche.tuteur') }}" class="btn btn-primary btn-lg">
-                <i class="bi bi-arrow-right"></i>    Voir tous les tuteurs
-                </a>
-            </div>
+        <div class="text-center mt-5" data-aos="fade-up">
+            <a href="{{ route('recherche.tuteur') }}" class="btn btn-primary btn-lg">
+                <i class="bi bi-arrow-right"></i> Voir tous les tuteurs
+            </a>
+        </div>
 
     </section>
 
@@ -1581,272 +1582,272 @@
      --}}
 
 
-   <!-- Contact Section -->
-<section id="inscription" class="inscription-section">
+    <!-- Contact Section -->
+    <section id="inscription" class="inscription-section">
 
-    <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-        <div class="row align-items-center position-relative">
+            <div class="row align-items-center position-relative">
 
-            <!-- Image en arrière-plan -->
-            <div class="col-lg-12 position-absolute start-0 top-0 w-100 h-100 d-none d-lg-block" style="z-index: 1;">
-                <div class="background-image-wrapper rounded-4 overflow-hidden">
-                    <img src="{{ asset('images/image_3.webp') }}" class="img-fluid w-100 h-100 object-fit-cover"
-                        alt="Devenir tuteur EduBenin">
+                <!-- Image en arrière-plan -->
+                <div class="col-lg-12 position-absolute start-0 top-0 w-100 h-100 d-none d-lg-block" style="z-index: 1;">
+                    <div class="background-image-wrapper rounded-4 overflow-hidden">
+                        <img src="{{ asset('images/image_3.webp') }}" class="img-fluid w-100 h-100 object-fit-cover"
+                            alt="Devenir tuteur EduBenin">
+                    </div>
                 </div>
-            </div>
 
-            <!-- Formulaire d'inscription simplifié -->
-            <div class="col-lg-6 offset-lg-6" data-aos="fade-left" data-aos-delay="300"
-                style="z-index: 2; position: relative;">
-                <br><br><br>
-                <div class="inscription-form rounded-4 overflow-hidden"
-                    style="box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+                <!-- Formulaire d'inscription simplifié -->
+                <div class="col-lg-6 offset-lg-6" data-aos="fade-left" data-aos-delay="300"
+                    style="z-index: 2; position: relative;">
+                    <br><br><br>
+                    <div class="inscription-form rounded-4 overflow-hidden"
+                        style="box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
                     border: 1px solid rgba(0, 0, 0, 0.1);">
 
-                    <!-- En-tête bleu -->
-                    <div class="form-header text-white text-center py-4"
-                        style="background: linear-gradient(135deg, #0d6efd, #004aad);">
-                        <h2 class="fw-bold mb-2" style="font-size: 2.2rem; color:white;">Devenir Tuteur</h2>
-                        <p style="font-size: 1.1rem; opacity: 0.9;">Rejoignez notre communauté d'enseignants</p>
-                    </div>
+                        <!-- En-tête bleu -->
+                        <div class="form-header text-white text-center py-4"
+                            style="background: linear-gradient(135deg, #0d6efd, #004aad);">
+                            <h2 class="fw-bold mb-2" style="font-size: 2.2rem; color:white;">Devenir Tuteur</h2>
+                            <p style="font-size: 1.1rem; opacity: 0.9;">Rejoignez notre communauté d'enseignants</p>
+                        </div>
 
-                    <!-- Contenu du formulaire -->
-                    <div class="form-content p-4 p-lg-5" style="background: rgba(255, 255, 255, 0.95);">
+                        <!-- Contenu du formulaire -->
+                        <div class="form-content p-4 p-lg-5" style="background: rgba(255, 255, 255, 0.95);">
 
-                        <!-- Formulaire simplifié - Étape 1: Email -->
-                        <form id="inscriptionFormStep1">
-                            @csrf
-                            <input type="hidden" name="role_id" value="3">
+                            <!-- Formulaire simplifié - Étape 1: Email -->
+                            <form id="inscriptionFormStep1">
+                                @csrf
+                                <input type="hidden" name="role_id" value="3">
 
-                            <!-- Email -->
-                            <div class="mb-4">
-                                <label for="email" class="form-label fw-semibold" style="color: #333;">
-                                    <i class="bi bi-envelope me-1"></i>Email
-                                </label>
-                                <input type="email" name="email" id="email"
-                                    class="form-control rounded-pill border px-3 py-2"
-                                    style="border-color: #ddd; background: #f8f9fa;" placeholder="exemple@email.com"
-                                    required>
-                            </div>
+                                <!-- Email -->
+                                <div class="mb-4">
+                                    <label for="email" class="form-label fw-semibold" style="color: #333;">
+                                        <i class="bi bi-envelope me-1"></i>Email
+                                    </label>
+                                    <input type="email" name="email" id="email"
+                                        class="form-control rounded-pill border px-3 py-2"
+                                        style="border-color: #ddd; background: #f8f9fa;" placeholder="exemple@email.com"
+                                        required>
+                                </div>
 
-                            <!-- Bouton pour continuer -->
-                            <div class="d-grid mt-5">
-                                <button type="submit" class="btn btn-primary btn-lg rounded-pill py-3 fw-bold"
-                                    style="background: linear-gradient(135deg, #0d6efd, #004aad);
+                                <!-- Bouton pour continuer -->
+                                <div class="d-grid mt-5">
+                                    <button type="submit" class="btn btn-primary btn-lg rounded-pill py-3 fw-bold"
+                                        style="background: linear-gradient(135deg, #0d6efd, #004aad);
                                            border: none;
                                            box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
                                            font-size: 1.1rem;">
-                                    <i class="bi bi-check-circle me-2"></i>Continuer
-                                </button>
-                            </div>
+                                        <i class="bi bi-check-circle me-2"></i>Continuer
+                                    </button>
+                                </div>
 
-                            <!-- Lien vers connexion -->
-                            <div class="text-center mt-4 pt-3" style="border-top: 1px solid #eee;">
-                                <p class="text-muted mb-0" style="font-size: 0.95rem;">
-                                    Déjà inscrit ?
-                                    <a href="{{ route('login') }}"
-                                        class="text-primary fw-semibold text-decoration-none">
-                                        Se connecter
-                                    </a>
-                                </p>
-                            </div>
+                                <!-- Lien vers connexion -->
+                                <div class="text-center mt-4 pt-3" style="border-top: 1px solid #eee;">
+                                    <p class="text-muted mb-0" style="font-size: 0.95rem;">
+                                        Déjà inscrit ?
+                                        <a href="{{ route('login') }}"
+                                            class="text-primary fw-semibold text-decoration-none">
+                                            Se connecter
+                                        </a>
+                                    </p>
+                                </div>
 
-                        </form>
+                            </form>
+
+                        </div>
 
                     </div>
-
+                    <br><br><br>
                 </div>
-                <br><br><br>
+
             </div>
 
         </div>
 
-    </div>
+    </section>
 
-</section>
-
-<!-- Modal de confirmation -->
-<div class="modal fade" id="confirmationModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content rounded-4">
-            <div class="modal-header border-0 pb-0">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-center p-4 p-md-5">
-                <!-- Icône de succès -->
-                <div class="mb-4">
-                    <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-success bg-opacity-10"
-                        style="width: 80px; height: 80px;">
-                        <i class="bi bi-check-circle-fill text-success" style="font-size: 2.5rem;"></i>
-                    </div>
+    <!-- Modal de confirmation -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4">
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <div class="modal-body text-center p-4 p-md-5">
+                    <!-- Icône de succès -->
+                    <div class="mb-4">
+                        <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-success bg-opacity-10"
+                            style="width: 80px; height: 80px;">
+                            <i class="bi bi-check-circle-fill text-success" style="font-size: 2.5rem;"></i>
+                        </div>
+                    </div>
 
-                <!-- Titre -->
-                <h3 class="fw-bold mb-3" style="color: #0d6efd;">Email enregistré avec succès !</h3>
+                    <!-- Titre -->
+                    <h3 class="fw-bold mb-3" style="color: #0d6efd;">Email enregistré avec succès !</h3>
 
-                <!-- Message -->
-                <p class="text-muted mb-4" style="font-size: 1.1rem;">
-                    Nous avons bien récupéré votre email <strong id="userEmail"></strong>.
-                    Cliquez sur "Finaliser l'inscription" pour compléter votre profil.
-                </p>
+                    <!-- Message -->
+                    <p class="text-muted mb-4" style="font-size: 1.1rem;">
+                        Nous avons bien récupéré votre email <strong id="userEmail"></strong>.
+                        Cliquez sur "Finaliser l'inscription" pour compléter votre profil.
+                    </p>
 
-                <!-- Boutons -->
-                <div class="d-flex flex-column flex-md-row gap-3 justify-content-center">
-                    <!-- Bouton pour finaliser l'inscription -->
-                    <form id="inscriptionFinalForm" method="GET" action="{{ route('register.tuteur') }}">
-                        @csrf
-                        <input type="hidden" name="email" id="finalEmail" value="">
-                        <input type="hidden" name="role_id" value="3">
-                        <button type="submit" class="btn btn-primary btn-lg px-4 py-2 fw-bold"
+                    <!-- Boutons -->
+                    <div class="d-flex flex-column flex-md-row gap-3 justify-content-center">
+                        <!-- Bouton pour finaliser l'inscription -->
+                        <form id="inscriptionFinalForm" method="GET" action="{{ route('register.tuteur') }}">
+                            @csrf
+                            <input type="hidden" name="email" id="finalEmail" value="">
+                            <input type="hidden" name="role_id" value="3">
+                            <button type="submit" class="btn btn-primary btn-lg px-4 py-2 fw-bold"
                                 style="background: linear-gradient(135deg, #0d6efd, #004aad);
                                        border: none;
                                        border-radius: 50px;">
-                            <i class="bi bi-person-plus me-2"></i>Finaliser l'inscription
-                        </button>
-                    </form>
+                                <i class="bi bi-person-plus me-2"></i>Finaliser l'inscription
+                            </button>
+                        </form>
 
 
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<style>
-    .inscription-section {
-        position: relative;
-        padding: 5rem 0;
-        overflow: hidden;
-        background: #f8fafc;
-    }
-
-    .background-image-wrapper {
-        width: 100%;
-        height: 100%;
-    }
-
-    .object-fit-cover {
-        object-fit: cover;
-    }
-
-    /* Styles pour le formulaire */
-    .inscription-form {
-        transition: all 0.3s ease;
-        margin-right: 50px;
-    }
-
-    .inscription-form:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2) !important;
-    }
-
-    .form-control {
-        transition: all 0.3s ease;
-        font-size: 1rem;
-    }
-
-    .form-control:focus {
-        border-color: #0d6efd !important;
-        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15) !important;
-        background: white;
-    }
-
-    .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(13, 110, 253, 0.4) !important;
-    }
-
-    /* Styles pour le modal */
-    .modal-content {
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-        border: 1px solid rgba(0, 0, 0, 0.1);
-    }
-
-    /* Responsive design */
-    @media (max-width: 991.98px) {
+    <style>
         .inscription-section {
-            padding: 3rem 0;
+            position: relative;
+            padding: 5rem 0;
+            overflow: hidden;
+            background: #f8fafc;
         }
 
-        .col-lg-6.offset-lg-6 {
-            margin-left: 0 !important;
+        .background-image-wrapper {
+            width: 100%;
+            height: 100%;
         }
 
-        .d-none.d-lg-block {
-            display: none !important;
+        .object-fit-cover {
+            object-fit: cover;
         }
 
+        /* Styles pour le formulaire */
         .inscription-form {
-            background: white !important;
-        }
-    }
-
-    @media (max-width: 767.98px) {
-        .inscription-form {
-            padding: 2rem !important;
-            margin: 0 1rem;
+            transition: all 0.3s ease;
+            margin-right: 50px;
         }
 
-        .modal-body {
-            padding: 2rem !important;
-        }
-    }
-
-    @media (max-width: 576px) {
-        .inscription-form {
-            padding: 1.5rem !important;
+        .inscription-form:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2) !important;
         }
 
-        .btn-lg {
-            padding: 0.75rem 1.5rem !important;
-            font-size: 1rem !important;
+        .form-control {
+            transition: all 0.3s ease;
+            font-size: 1rem;
         }
 
-        .modal-body {
-            padding: 1.5rem !important;
-        }
-    }
-</style>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const formStep1 = document.getElementById('inscriptionFormStep1');
-    const emailInput = document.getElementById('email');
-    const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
-    const userEmailSpan = document.getElementById('userEmail');
-    const finalEmailInput = document.getElementById('finalEmail');
-
-    formStep1.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        // Validation de l'email
-        const email = emailInput.value.trim();
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        if (!emailPattern.test(email)) {
-            emailInput.classList.add('is-invalid');
-            return;
+        .form-control:focus {
+            border-color: #0d6efd !important;
+            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15) !important;
+            background: white;
         }
 
-        // Afficher l'email dans le modal
-        userEmailSpan.textContent = email;
-        finalEmailInput.value = email;
-
-        // Afficher le modal
-        confirmationModal.show();
-
-        // Réinitialiser le formulaire
-        formStep1.reset();
-        emailInput.classList.remove('is-invalid');
-    });
-
-    // Validation en temps réel
-    emailInput.addEventListener('input', function() {
-        if (this.value.trim()) {
-            this.classList.remove('is-invalid');
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(13, 110, 253, 0.4) !important;
         }
-    });
-});
-</script>
+
+        /* Styles pour le modal */
+        .modal-content {
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive design */
+        @media (max-width: 991.98px) {
+            .inscription-section {
+                padding: 3rem 0;
+            }
+
+            .col-lg-6.offset-lg-6 {
+                margin-left: 0 !important;
+            }
+
+            .d-none.d-lg-block {
+                display: none !important;
+            }
+
+            .inscription-form {
+                background: white !important;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .inscription-form {
+                padding: 2rem !important;
+                margin: 0 1rem;
+            }
+
+            .modal-body {
+                padding: 2rem !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .inscription-form {
+                padding: 1.5rem !important;
+            }
+
+            .btn-lg {
+                padding: 0.75rem 1.5rem !important;
+                font-size: 1rem !important;
+            }
+
+            .modal-body {
+                padding: 1.5rem !important;
+            }
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const formStep1 = document.getElementById('inscriptionFormStep1');
+            const emailInput = document.getElementById('email');
+            const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+            const userEmailSpan = document.getElementById('userEmail');
+            const finalEmailInput = document.getElementById('finalEmail');
+
+            formStep1.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Validation de l'email
+                const email = emailInput.value.trim();
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!emailPattern.test(email)) {
+                    emailInput.classList.add('is-invalid');
+                    return;
+                }
+
+                // Afficher l'email dans le modal
+                userEmailSpan.textContent = email;
+                finalEmailInput.value = email;
+
+                // Afficher le modal
+                confirmationModal.show();
+
+                // Réinitialiser le formulaire
+                formStep1.reset();
+                emailInput.classList.remove('is-invalid');
+            });
+
+            // Validation en temps réel
+            emailInput.addEventListener('input', function() {
+                if (this.value.trim()) {
+                    this.classList.remove('is-invalid');
+                }
+            });
+        });
+    </script>
 @endsection
