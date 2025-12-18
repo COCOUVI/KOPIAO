@@ -85,8 +85,6 @@
         </a>
 
 
-
-
         @auth
 
             <div class="d-flex align-items-center gap-2">
@@ -104,13 +102,12 @@
             <div style="margin: 0px; padding: 0px;">
 
 
-
-
-                <a class="btn-getstarted btn btn-warning bg-light fw-semibold text-dark px-4 py-2 rounded-pill"
+                <a class="btn-getstarted btn btn-warning bg-light fw-semibold text-dark px-4 py-2 rounded-pill btn-tuteur"
                     style="margin-right: 0px; padding-right:0px; border:solid 3px #0d6efd;"
                     href="{{ route('register.tuteur') }}">
                     Devenir tuteur
                 </a>
+
 
                 <a class="btn-getstarted btn btn-warning fw-semibold text-light px-4 py-2 rounded-pill"
                     href="{{ route('login') }}">
@@ -122,14 +119,29 @@
 
         <style>
             /* ================================
-   CACHER LE BOUTON CONNEXION SUR MOBILE
+   MOBILE : afficher seulement
+   - Titre à gauche
+   - Se connecter à droite
 =================================== */
             @media (max-width: 991px) {
-                .btn-getstarted {
+
+                /* Cacher "Devenir tuteur" */
+                .btn-tuteur {
                     display: none !important;
+                }
+
+                /* Garder "Se connecter" visible */
+                .btn-getstarted {
+                    display: inline-flex;
+                }
+
+                /* Header bien aligné */
+                .header-container {
+                    justify-content: space-between;
                 }
             }
         </style>
+
 
     </div>
 </header>
@@ -169,7 +181,8 @@
                 <h4 class="text-warning fw-semibold mb-3">Liens utiles</h4>
                 <ul class="list-unstyled">
                     <li><a href="#" class="text-white-50 text-decoration-none">Accueil</a></li>
-                      <li><a href="{{ route('professeurs.index') }}" class="text-white-50 text-decoration-none">Tuteurs</a></li>
+                    <li><a href="{{ route('professeurs.index') }}"
+                            class="text-white-50 text-decoration-none">Tuteurs</a></li>
 
                 </ul>
             </div>

@@ -870,33 +870,18 @@
                 <div class="menu-item">
                     <a href="{{ route('admin.dashboard') }}" class="active">
                         <i class="fas fa-home"></i>
-                        <span class="menu-text">Tableau de Bord</span>
+                        <span class="menu-text">Tuteurs</span>
                     </a>
                 </div>
-                <div class="menu-item">
-                    <a href="#">
-                        <i class="fas fa-users"></i>
-                        <span class="menu-text">Utilisateurs</span>
-                    </a>
-                </div>
-                <div class="menu-item">
-                    <a href="#">
-                        <i class="fas fa-chalkboard-teacher"></i>
-                        <span class="menu-text">Professeurs</span>
-                    </a>
-                </div>
+
+
                 <div class="menu-item">
                     <a href="{{ route('apprenants.index') }}">
                         <i class="fas fa-user-graduate"></i>
-                        <span class="menu-text">Étudiants</span>
+                        <span class="menu-text">Apprenants</span>
                     </a>
                 </div>
-                <div class="menu-item">
-                    <a href="#">
-                        <i class="fas fa-cog"></i>
-                        <span class="menu-text">Paramètres</span>
-                    </a>
-                </div>
+
 
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
