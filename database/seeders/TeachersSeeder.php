@@ -12,41 +12,38 @@ class TeachersSeeder extends Seeder
 {
     public function run(): void
     {
-        // 🔹 Ajouter l'admin par défaut
-        User::create([
-            'firstname'             => 'Admin',
-            'lastname'              => 'System',
-            'email'                 => 'admin@gmail.com',
-            'email_verified_at'     => now(),
-            'password'              => Hash::make('12345678'),
-            'telephone'             => null,
-            'photo_path'            => null,
-            'role_id'               => 1,
-            'is_active'             => 1,
-            'remember_token'        => Str::random(10),
-            'created_at'            => now(),
-            'updated_at'            => now(),
-            'bio'                   => null,
-            'qualifications'        => null,
-            'subjects'              => json_encode([]),
-            'rate_per_hour'         => null,
-            'identity_document_path'=> null,
-            'identity_verified'     => 0,
-            'availability'          => null,
-            'city'                  => 'Cotonou',
-            'learning_history'      => null,
-            'learning_preference'   => 'online',
-            'satisfaction_score'    => null,
-            'notify_email'          => 1,
-            'notify_push'           => 1,
-            'last_login'            => null,
-            'is_valid'              => 1,
-        ]);
-
-        // 🔹 Charger les photos
-        $photos = Storage::disk('public')->allFiles('profile-photos');
-        if (empty($photos)) {
-            dd("Aucune photo trouvée dans : " . storage_path('app/public/profile-photos'));
+       
+        // Création de l'admin avant les professeurs
+        if (!User::where('email', 'admin@gmail.com')->exists()) {
+            User::create([
+                'firstname'             => 'Admin',
+                'lastname'              => 'Principal',
+                'email'                 => 'admin@gmail.com',
+                'email_verified_at'     => now(),
+                'password'              => Hash::make('admin1234@'),
+                'telephone'             => '+22990000000',
+                'photo_path'            => null,
+                'role_id'               => 1, // 1 pour admin
+                'is_active'             => 1,
+                'remember_token'        => Str::random(10),
+                'created_at'            => now(),
+                'updated_at'            => now(),
+                'bio'                   => 'Administrateur principal',
+                'qualifications'        => null,
+                'subjects'              => null,
+                'rate_per_hour'         => null,
+                'identity_document_path'=> null,
+                'identity_verified'     => 1,
+                'availability'          => null,
+                'city'                  => 'Cotonou',
+                'learning_history'      => null,
+                'learning_preference'   => null,
+                'satisfaction_score'    => null,
+                'notify_email'          => 1,
+                'notify_push'           => 1,
+                'last_login'            => null,
+                'is_valid'              => 1,
+            ]);
         }
 
         // 🔹 Listes de données
@@ -68,15 +65,19 @@ class TeachersSeeder extends Seeder
         for ($i = 0; $i < 15; $i++) {
             $firstname = $firstnames[array_rand($firstnames)];
             $lastname = $lastnames[array_rand($lastnames)];
+            // Génère un email aléatoire et unique
+            do {
+                $email = strtolower($firstname) . "." . strtolower($lastname) . rand(1000,9999) . '@example.com';
+            } while (User::where('email', $email)->exists());
 
             User::create([
                 'firstname'             => $firstname,
                 'lastname'              => $lastname,
-                'email'                 => strtolower($firstname) . "." . strtolower($lastname) . $i . '@example.com',
+                'email'                 => $email,
                 'email_verified_at'     => now(),
                 'password'              => Hash::make('password123'),
                 'telephone'             => '+229' . rand(90000000, 99999999),
-                'photo_path'            => 'profile-photos/' . basename($photos[array_rand($photos)]),
+                'photo_path'            => null, // ou '' si tu préfères une chaîne vide
                 'role_id'               => 3,
                 'is_active'             => 1,
                 'remember_token'        => Str::random(10),
